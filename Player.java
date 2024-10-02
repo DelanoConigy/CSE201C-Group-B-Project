@@ -22,11 +22,23 @@ public class Player{
         return this.gender;
     }
 
+    public int getConfidence(){
+        return this.confidence;
+    }
+
     public void setConfidence(int confidence){
         if (this.confidence + confidence <= 0){
             this.confidence = 0;
         } else {
             this.confidence += confidence;
+        }
+    }
+
+    public void addConfidence(int confidence){
+        if (this.confidence + confidence >= 100){
+            this.setConfidence(100);
+        } else{
+            this.setConfidence(this.confidence + confidence);
         }
     }
 }
