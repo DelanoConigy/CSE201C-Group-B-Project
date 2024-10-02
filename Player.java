@@ -10,10 +10,12 @@ public class Player{
 
     private String gender;
     private int confidence; 
+    private int points; 
 
     public Player(String gender){
         this.gender = gender;
-        confidence = DEFAULT_CONFIDENCE; 
+        this.confidence = DEFAULT_CONFIDENCE; 
+        this.points = 0;
     }
 
     public String getGender(){
