@@ -1,7 +1,7 @@
 /**
  * Class to contain and modify attributes of player inside an object. 
  * 
- * @author Delano Conigy 
+ * @author Delano Conigy, etc
  */
 
 public class Player{
