@@ -1,5 +1,6 @@
 //Test file for Section C Group B
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public static void main(String[] args){
 	Scanner in = new Scanner(System.in);
@@ -44,21 +45,39 @@ public static void main(String[] args){
 	Room ringsRoom = new Rings();
 	Room unevenBarsRoom = UnevenBars();
 	Room balanceRoom = new BalanceBeam();
+	ArrayList<String> rooms = new ArrayList<>();
+    rooms.add("Pommel");
+    rooms.add("Floor");
+	rooms.add("Vault");
+	rooms.add("Rings");
+	rooms.add("Uneven Bars");
+	rooms.add("Balance Beam");
 
-	System.out.println("Now it's time to compete! Pick the event you want to compete in: Pommel, Floor, Vault, Rings, Uneven Bars, or Balance Beam.");
+	System.out.println("Now it's time to compete! Pick the event you want to compete in: ");
+	for(int i = 0; i < rooms.size(); i++){
+		System.out.print(rooms.get(i) + " ");
+	}
+	System.out.println();
+
 			String room = in.nextLine();
 			if(room.equals("Pommel")) {
 				pommelRoom.startRoom(p);
+				rooms.remove(0);
 			} else if(room.equals("Floor")) {
 				floorRoom.startRoom(p);
+				rooms.remove(1);
 			} else if(room.equals("Vault")) {
 				vaultRoom.startRoom(p);
+				rooms.remove(2);
 			} else if(room.equals("Rings")) {
 				ringsRoom.startRoom(p);
+				rooms.remove(3);
 			} else if(room.equals("Uneven Bars")) {
 				unevenBarsRoom.startRoom(p);
-			} else if(room.equals("Floor")) {
+				rooms.remove(4);
+			} else if(room.equals("Balance Beam")) {
 				balanceRoom.startRoom(p);
+				rooms.remove(5);
 			} else {
 				System.out.println("Wrong choice.");
 			}
