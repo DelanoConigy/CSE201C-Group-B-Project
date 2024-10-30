@@ -95,12 +95,4 @@ public class BalanceBeam extends Room {
 	}
 
 
-
-
-
-
-
-
-
-
 }

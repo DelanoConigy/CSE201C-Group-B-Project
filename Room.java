@@ -5,8 +5,7 @@
  */
 
 
-public abstract class Room{
-
+public abstract class Room {
     private double score;
 
     //Constructor
