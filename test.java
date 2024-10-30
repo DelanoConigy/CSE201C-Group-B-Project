@@ -53,32 +53,38 @@ public static void main(String[] args){
 	rooms.add("Uneven Bars");
 	rooms.add("Balance Beam");
 
-	System.out.println("Now it's time to compete! Pick the event you want to compete in: ");
-	for(int i = 0; i < rooms.size(); i++){
-		System.out.print(rooms.get(i) + " ");
-	}
-	System.out.println();
-
-			String room = in.nextLine();
-			if(room.equals("Pommel")) {
-				pommelRoom.startRoom(p);
-				rooms.remove(0);
-			} else if(room.equals("Floor")) {
-				floorRoom.startRoom(p);
-				rooms.remove(1);
-			} else if(room.equals("Vault")) {
-				vaultRoom.startRoom(p);
-				rooms.remove(2);
-			} else if(room.equals("Rings")) {
-				ringsRoom.startRoom(p);
-				rooms.remove(3);
-			} else if(room.equals("Uneven Bars")) {
-				unevenBarsRoom.startRoom(p);
-				rooms.remove(4);
-			} else if(room.equals("Balance Beam")) {
-				balanceRoom.startRoom(p);
-				rooms.remove(5);
-			} else {
-				System.out.println("Wrong choice.");
-			}
+	in.nextLine();
+        System.out.print("Now it's time to compete!");
+        while(rooms.size() > 0) {
+            System.out.println("Pick the event you want to compete in: ");
+            for(int i = 0; i < rooms.size()- 1; i++){
+                System.out.print(rooms.get(i) + ", ");
+            }
+            System.out.println(rooms.get(rooms.size() - 1));
+            String room = in.nextLine();
+            if(room.equals("Pommel")) {
+                pommelRoom.startRoom(p);
+                rooms.remove(rooms.indexOf("Pommel"));
+            } else if(room.equals("Floor")) {
+                floorRoom.startRoom(p);
+                rooms.remove(rooms.indexOf("Floor"));
+            } else if(room.equals("Vault")) {
+                vaultRoom.startRoom(p);
+                rooms.remove(rooms.indexOf("Vault"));
+            } else if(room.equals("Rings")) {
+                ringsRoom.startRoom(p);
+                rooms.remove(room.indexOf("Rings"));
+            } else if(room.equals("Uneven Bars")) {
+                unevenBarsRoom.startRoom(p);
+                rooms.remove(rooms.indexOf("Uneven Bars"));
+            } else if(room.equals("Balance Beam")) {
+                balanceRoom.startRoom(p);
+                rooms.remove(rooms.indexOf("Balance Beam"));
+            } else {
+                System.out.println("Please enter a valid input");
+            }
+        }
+        
+        System.out.println("Congratulations! You have competed in all the events.");
+       
 }
