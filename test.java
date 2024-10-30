@@ -62,7 +62,4 @@ public static void main(String[] args){
 			} else {
 				System.out.println("Wrong choice.");
 			}
-
-	balanceRoom.startRoom(p);
-
 }
