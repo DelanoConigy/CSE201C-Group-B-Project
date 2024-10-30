@@ -29,8 +29,11 @@ public class Player{
     public void setConfidence(int confidence){
         if (this.confidence + confidence <= 0){
             this.confidence = 0;
-        } else {
-            this.confidence += confidence;
+        } else if(confidence >= 100){
+            this.confidence = 100;
+        } 
+        else {
+            this.confidence = confidence;
         }
     }
 

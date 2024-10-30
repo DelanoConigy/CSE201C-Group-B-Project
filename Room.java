@@ -1,5 +1,5 @@
 /**
- * Provides an interface to provide a basis for operations and attributes that should be in between each Room. 
+ * An abstract class to provide a basis for operations and attributes that should be in between each Room. 
  * 
  * @author Delano Conigy, etc
  */
