@@ -36,7 +36,14 @@ public static void main(String[] args){
 
 
 	Player p = new Player(gender);
+	Room pommelRoom = new PommelHorse();
+	Room floorRoom = new Floor();
+	Room vaultRoom = new Vault();
+	Room ringsRoom = new Rings();
+	Room unevenBarsRoom = UnevenBars();
 	Room balanceRoom = new BalanceBeam();
+
+	
 
 	balanceRoom.startRoom(p);
 }
