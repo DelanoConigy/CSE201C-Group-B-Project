@@ -32,6 +32,8 @@ public static void main(String[] args){
 	tempSkillValue = Integer.parseInt(in.next());
 	int balance = tempSkillValue;
 	skillPoints -= tempSkillValue;	
+	System.out.println("Your skills are as follows: Strength - " + strength + ", Speed - " + speed + ". Balance - " + balance + ", Confidence: " + confidence);
+	
 
 
 
@@ -43,7 +45,24 @@ public static void main(String[] args){
 	Room unevenBarsRoom = UnevenBars();
 	Room balanceRoom = new BalanceBeam();
 
-	
+	System.out.println("Now it's time to compete! Pick the event you want to compete in: Pommel, Floor, Vault, Rings, Uneven Bars, or Balance Beam.");
+			String room = in.nextLine();
+			if(room.equals("Pommel")) {
+				pommelRoom.startRoom(p);
+			} else if(room.equals("Floor")) {
+				floorRoom.startRoom(p);
+			} else if(room.equals("Vault")) {
+				vaultRoom.startRoom(p);
+			} else if(room.equals("Rings")) {
+				ringsRoom.startRoom(p);
+			} else if(room.equals("Uneven Bars")) {
+				unevenBarsRoom.startRoom(p);
+			} else if(room.equals("Floor")) {
+				balanceRoom.startRoom(p);
+			} else {
+				System.out.println("Wrong choice.");
+			}
 
 	balanceRoom.startRoom(p);
+
 }
