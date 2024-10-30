@@ -30,6 +30,7 @@ public static void main(String[] args){
 	int balance = tempSkillValue;
 	skillPoints -= tempSkillValue;	
 
+	
 
 	Player p = new Player(gender);
 	Room balance = new BalanceBeam();
