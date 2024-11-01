@@ -21,7 +21,7 @@ public class Move{
         return name;
     }
 
-    public Boolean getDifficulty() {
+    public boolean getDifficulty() {
         return difficulty;
     }
 
