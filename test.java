@@ -38,7 +38,7 @@ public static void main(String[] args){
 
 
 
-	Player p = new Player(gender);
+	Player p = new Player(gender, confidence, strength, speed, balance);
 	Room pommelRoom = new PommelHorse();
 	Room floorRoom = new Floor();
 	Room vaultRoom = new Vault();
