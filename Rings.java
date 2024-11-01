@@ -66,9 +66,8 @@ public class Rings extends Room {
     public void performMove(int move, Player player) {}
 
     /**
-     * Override of the abstract startRoom() method
-     * from the Room class. Shows the Rings rules,
-     * and continually allows the player to select and
+     * Override of the abstract startRoom() method from the Room class.
+     * Shows the Rings rules, and continually allows the player to select and
      * perform moves until they're out of stamina.
      */
     @Override
