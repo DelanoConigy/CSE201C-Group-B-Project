@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.io.ArrayList;
+import java.util.ArrayList;
 /**
  * Class to control the floor room.
  * 
@@ -33,12 +33,14 @@ public class Floor extends Room {
      * @param Player player The player object that contains important attributes.
      */
     public void startRoom(Player player) {
-        displayWelcome();
+        displayWelcome(player);
         while (movesLeft > 0) {
+            //Player display attributes
             Move selectedMove = selectMove();
-            //Something that displays available moves and has user choose which moves
             attemptMove(player, selectedMove);
+            movesLeft--;
         }
+        displayGoodbye(player);
     }
 
     /**
@@ -49,6 +51,13 @@ public class Floor extends Room {
                         + "Based on your different attributes they will determine whether you\n"
                         + "succesfully complete the move or fail. Successful moves will count\n"
                         + "towards your total score.\n");
+    }
+
+    /**
+     * Goodbye message displayed when leaving the room.
+     */
+    private void displayGoodbye(Player p) {
+        System.out.println("The floor room is now over, goodbye.");
     }
     
     /**
@@ -73,7 +82,7 @@ public class Floor extends Room {
      * 
      * @param Player p Player object that has the player attributes.
      * @param Move m Which move the player will be trying to complete.
-     * @return boolean true if skill completed succesfully, false otherwise.
+     * @return boolean true if skill completed successfully, false otherwise.
      */
     private boolean attemptMove(Player p, Move m) {
         return false;
