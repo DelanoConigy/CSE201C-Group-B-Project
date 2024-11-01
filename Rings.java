@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Rings extends Room {
     private int totalRingScore;
     private int stamina;
-    private String[] moves = {"Back Lever", "Iron Cross", "L-sit", "Front Tuck"};
+    private Move[] moves;
     private String rules = "First, select a move to perform. Then, choose how long \n"
     		+ "you want to hold it. The longer you hold, the more points \n"
     		+ "you'll get! Watch your stamina, though; the event is over once you\n"
@@ -21,6 +21,12 @@ public class Rings extends Room {
     public Rings() {
     	totalRingScore = 0;
     	stamina = 100;
+    	moves = new Move[]{
+                new Move("Back Lever", 70, "A challenging static hold."),
+                new Move("Iron Cross", 90, "An advanced position on the rings."),
+                new Move("L-sit", 50, "A core-strength move."),
+                new Move("Front Tuck", 60, "A tuck position facing forward.")
+    	};
     }
 
     /**
@@ -31,10 +37,8 @@ public class Rings extends Room {
     public int chooseMove() {
     	// print moves
     	System.out.println("Pick a move! Enter its corresponding number.");
-    	int i = 1;
-        for (String move : moves) {
-            System.out.println(i + ". " + move);
-            i++;
+    	for (int i = 0; i < moves.length; i++) {
+            System.out.println((i + 1) + ". " + moves[i].getName() + " (Difficulty: " + moves[i].getDifficulty() + ")");
         }
 
         Scanner s = new Scanner(System.in);
@@ -43,7 +47,7 @@ public class Rings extends Room {
         // keep getting input until valid
         while (choice < 1 || choice > moves.length) {
             try {
-                System.out.print("Enter your choice (1-4): ");
+                System.out.print("Enter your choice (1-" + moves.length + "): ");
                 choice = s.nextInt();
                 if (choice < 1 || choice > moves.length) {
                     System.out.println("Invalid choice. Please select a number between 1 and " + moves.length + ".");
@@ -54,7 +58,7 @@ public class Rings extends Room {
             }
         }
 
-        System.out.println("You chose: " + moves[choice - 1]);
+        System.out.println("You chose: " + moves[choice - 1].getName());
         return choice - 1; // return index of the chosen move
     }
 
@@ -66,8 +70,9 @@ public class Rings extends Room {
     public void performMove(int move, Player player) {}
 
     /**
-     * Override of the abstract startRoom() method from the Room class.
-     * Shows the Rings rules, and continually allows the player to select and
+     * Override of the abstract startRoom() method
+     * from the Room class. Shows the Rings rules,
+     * and continually allows the player to select and
      * perform moves until they're out of stamina.
      */
     @Override
@@ -78,6 +83,14 @@ public class Rings extends Room {
             //performMove(moveIndex, player);
         //}
             
+            
+        //endRoom(totalRingScore);
         //System.out.println("You're out of stamina. Event over! Your total score: " + totalRingScore);
+    }
+
+    public static void main(String[] args) {
+        Rings rings = new Rings();
+        Player player = new Player("Male");
+        rings.startRoom(player);
     }
 }
