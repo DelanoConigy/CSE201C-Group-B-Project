@@ -1,20 +1,20 @@
 /**
  * Class to contain and modify attributes of player inside an object. 
  * 
- * @author Delano Conigy, etc
+ * @author Delano Conigy, Daktoa Oudeman, etc
  */
 
-public class Player{
-
-    private final int DEFAULT_CONFIDENCE = 20; 
+public class Player{ 
 
     private String gender;
-    private int confidence; 
-    private int points; 
+    private int confidence, points, strength, speed, balance; 
 
-    public Player(String gender){
+    public Player(String gender, int confidence, int strength, int speed, int balance){
         this.gender = gender;
-        this.confidence = DEFAULT_CONFIDENCE; 
+        this.confidence = confidence; 
+        this.strength = strength;
+        this.speed = speed;
+        this.balance = balance;
         this.points = 0;
     }
 
