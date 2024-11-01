@@ -19,7 +19,8 @@ public static void main(String[] args){
 
 	System.out.println("Now it's time to establish your skill level. How confident are you in your abilities? Choose a number 1-10.");
 	double confidence = Double.parseDouble(in.next());
-	System.out.println("You will now have 20 points to disperse across 3 skills: strength, speed, and balance. The choices you make here will determine how well your athlete performs in certain events. You do not have to use all 20 skill points.");
+	System.out.println("You will now have 20 points to disperse across 3 skills: strength, speed, and balance.");
+	System.out.println("The choices you make here will determine how well your athlete performs in certain events. You do not have to use all 20 skill points.");
 	int skillPoints = 20;
 	System.out.println("You have " + skillPoints + " skill points left. How strong are you? Choose a number 0 - 10");
 	int tempSkillValue = Integer.parseInt(in.next());
@@ -37,7 +38,7 @@ public static void main(String[] args){
 	
 
 
-	Player p = new Player(gender);
+//	Player p = new Player(gender);
 
 	Player p = new Player(gender, confidence, strength, speed, balance);
 	Room pommelRoom = new PommelHorse();
