@@ -19,11 +19,27 @@ public class Player{
     }
 
     public String getGender(){
-        return this.gender;
+        return gender;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 
     public int getConfidence(){
-        return this.confidence;
+        return confidence;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     public void setConfidence(int confidence){
