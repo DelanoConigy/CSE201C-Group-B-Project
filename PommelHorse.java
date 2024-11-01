@@ -59,6 +59,7 @@ public class PommelHorse extends Room {
                 executeMove(move, player);  // Execute the chosen move
                 System.out.println("Your confidence is now: " + player.getConfidence());
 
+                // Work in progress
                 if (player.getConfidence() <= 0) {
                     System.out.println("Oh no! You've lost confidence and fallen off the pommel horse.");
                     break;
@@ -137,8 +138,7 @@ public class PommelHorse extends Room {
 
     public boolean playMinigame() {
         // Randomly select a minigame, for now simply returning success
-        // Real implementation will contain specific minigame logic
-        return true;  // Placeholder for minigame outcome
+        return true;
     }
 
     private void performComboMove(Player player) {
