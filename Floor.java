@@ -30,7 +30,7 @@ public class Floor extends Room {
      * Starts the Floor event. This will have the player play through the
      * entire room before returning them back to the main menu.
      * 
-     * @param Player player The player object that contains important attributes.
+     * @param player The player object that contains important attributes.
      */
     public void startRoom(Player player) {
         displayWelcome(player);
@@ -45,6 +45,8 @@ public class Floor extends Room {
 
     /**
      * Welcome message displayed upon entering the room.
+     * 
+     * @param p Player object
      */
     private void displayWelcome(Player p) {
         System.out.print("Welcome to the Floor Room. You will be given 10 chances to make moves.\n"
@@ -55,6 +57,8 @@ public class Floor extends Room {
 
     /**
      * Goodbye message displayed when leaving the room.
+     * 
+     * @param p Player object
      */
     private void displayGoodbye(Player p) {
         System.out.println("The floor room is now over, goodbye.");
@@ -62,6 +66,8 @@ public class Floor extends Room {
     
     /**
      * Will ask the user to select a move from a randomized set of moves
+     * 
+     * @return The selected move
      */
     private Move selectMove() {
         return null;
@@ -70,7 +76,7 @@ public class Floor extends Room {
     /**
      * Helper method to load the skills ArrayList with various moves.
      * 
-     * @return ArrayList<Move> A loaded ArrayList of moves.
+     * @return A loaded ArrayList of moves.
      */
     private ArrayList<Move> loadSkills() {
         return null;
@@ -80,9 +86,9 @@ public class Floor extends Room {
      * Attempts a move specified by the player, based on various attributes like
      * player confidence, strength, speed, and balance.
      * 
-     * @param Player p Player object that has the player attributes.
-     * @param Move m Which move the player will be trying to complete.
-     * @return boolean true if skill completed successfully, false otherwise.
+     * @param p Player object that has the player attributes.
+     * @param m Which move the player will be trying to complete.
+     * @return true if skill completed successfully, false otherwise.
      */
     private boolean attemptMove(Player p, Move m) {
         return false;
