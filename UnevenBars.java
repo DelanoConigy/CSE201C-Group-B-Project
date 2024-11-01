@@ -1,9 +1,9 @@
 import java.util.*;
 
 /**
- * Class to control the balance beam event.
+ * Class to control the Uneven Bars event
  * 
- * @author Rayne Elling
+ * @author Delano Conigy 
  */
 
 
@@ -15,30 +15,41 @@ public class UnevenBars extends Room {
     //private String playerChoice;
     private String roomDescription;
     private String instructions;
+    private String instructions2;
     private String moveChoice;
+    private int barsScore;
+    private int moveCount;
     private String[] messages = new String[6];
-    private TreeSet<Move> moves = new TreeSet<>();
+    private TreeMap<String, Move> moves = new TreeMap<>();
 
     // Could be a class named Combo but their will only be 
     // like three combos and they heavily differ in length
     private ArrayList<Move> combo1 = new ArrayList<>();
-
-    // an array of ArrayLists, each arrayList is a combo, easy medium hard
-    private ArrayList<Move>[] combos = new ArrayList[3];
+    private ArrayList<Move> combo2 = new ArrayList<>();
+    private ArrayList<Move> combo3 = new ArrayList<>();
 
 
     public UnevenBars(){
-        this.roomDescription = "Welcome to the balance beam event! Throughout this event you will be provided with choices of which move to make.These moves are dependent on your skill and confidence levels, so choose wisely.";
+        this.roomDescription = "Welcome to the balance beam event! Throughout this event you will be provided with choices of which move to make. These moves are dependent on your skill, confidence levels, and grip strength so choose wisely.";
         this.instructions = "Please choose the following moves, be wary that each move has a chance of failing!";
+        this.instructions2 = "[1] to perform a premade combo, [2] to string  together you own moves, or [3] to hang";
         this.moveChoice = ""; // this will just be the user input
         this.gripStrength = 20;
         this.barsScore = 0;
-        this.movesLeft = 6; 
+        this.moveCount = 0;
         this.elapsedTime = 0; // the amount of time you have to perform each move 
     }
 
+    public void displayCombo(ArrayList<Move> combo, int comboNum){
+        System.out.println("Moves in Combo " + comboNum + ":");
+        for (int i = 0; i < combo.size(); i++){
+            System.out.print(combo.get(i).toString());
+        }
+        System.out.println(); // adds a new line
+    }
+
     public void loadMoves(){
-        Move jumpUp = new Move("Jump up", 1.0, "They jump!");
+        Move jumpUp = new Move("Jump up", 1, "They jump!");
 
     }
 
@@ -59,19 +70,20 @@ public class UnevenBars extends Room {
     }
 
     public String getInstructions(){
-        return null;
+        return instructions;
     }
 
     public void updateScore(double amount){
-        totalBeamScore += amount;
-        setScore(totalBeamScore / count);
+        barsScore += amount;
+        setScore(barsScore / moveCount);
     }
 
 
     private void storeMessages(){
         messages[0] = this.roomDescription;
         messages[1] = this.instructions;
-        messages[2] = this.moveChoice;
+        messages[2] = this.instructions2;
+        messages[3] = this.moveChoice;
     }
 
     private void showMessage(int i){
@@ -92,7 +104,6 @@ public class UnevenBars extends Room {
         //showMessage(2); // Let's begin. Describe start and first move.
         Scanner scan = new Scanner(System.in);
         displayOptions(scan);
-        System.out.println(skills[0].getName() + ", " + skills[0].getDifficulty() + ", " + skills[0].getDescription());
         
         //endRoom();
     }
