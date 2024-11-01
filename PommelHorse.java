@@ -136,11 +136,13 @@ public class PommelHorse extends Room {
         player.addConfidence(confidenceChange);
     }
 
+    // Work in progress
     public boolean playMinigame() {
         // Randomly select a minigame, for now simply returning success
         return true;
     }
 
+    // Work in progress
     private void performComboMove(Player player) {
         // Simulated combo move implementation
         System.out.println("Combo moves selected! Performing a series of hard moves.");
