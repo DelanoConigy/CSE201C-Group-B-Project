@@ -37,6 +37,7 @@ public static void main(String[] args){
 	
 
 
+	Player p = new Player(gender);
 
 	Player p = new Player(gender, confidence, strength, speed, balance);
 	Room pommelRoom = new PommelHorse();
@@ -73,7 +74,7 @@ public static void main(String[] args){
                 rooms.remove(rooms.indexOf("Vault"));
             } else if(room.equals("Rings")) {
                 ringsRoom.startRoom(p);
-                rooms.remove(room.indexOf("Rings"));
+                rooms.remove(rooms.indexOf("Rings"));
             } else if(room.equals("Uneven Bars")) {
                 unevenBarsRoom.startRoom(p);
                 rooms.remove(rooms.indexOf("Uneven Bars"));
