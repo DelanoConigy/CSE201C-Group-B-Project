@@ -4,8 +4,7 @@
 * @Author Adash Bhattarai
 */
 
-import java.util.Scanner;
-
+import java.util.*;
 
 public class Vault extends Room{
 	private String rules;
@@ -16,19 +15,14 @@ public class Vault extends Room{
 		rules = "You are entering the vault event";
 	}
 	
-
-@Override
+	/**
+	 * The method that will the run the room and call methods that handle cases.
+	 */
+	@Override
 	public void startRoom(Player player) {
 	
-	System.out.println(rules);
-	
-	
-	
-		
-		
-		
-		
-	}
+		System.out.println(rules);
 
-	
+		System.out.println("You are exiting the Vault event");
+	}
 }
