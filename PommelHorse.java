@@ -3,23 +3,25 @@ import java.util.*;
 public class PommelHorse extends Room {
     private Scanner scanner;
     private String position;
+    
+    // For the following, changed true to 2 and false to 1
     private final List<Move> leftMoves = Arrays.asList(
-            new Move("Left Swing", false, "A simple left swing to warm up."),
-            new Move("One-Hand Circle", true, "A challenging one-hand circle move."),
-            new Move("Scissor", true, "A scissor move requiring strength and balance."),
-            new Move("Transition Move", false, "A move that lets you switch positions.")
+            new Move("Left Swing", 1, "A simple left swing to warm up."),
+            new Move("One-Hand Circle", 2, "A challenging one-hand circle move."),
+            new Move("Scissor", 2, "A scissor move requiring strength and balance."),
+            new Move("Transition Move", 1, "A move that lets you switch positions.")
     );
     private final List<Move> middleMoves = Arrays.asList(
-            new Move("Mushroom Spin", false, "An easy spin on the mushroom."),
-            new Move("Spindle", true, "A hard spindle move requiring precision."),
-            new Move("Russian Swing", true, "A difficult Russian swing for advanced athletes."),
-            new Move("Transition Move", false, "A move that lets you switch positions.")
+            new Move("Mushroom Spin", 1, "An easy spin on the mushroom."),
+            new Move("Spindle", 2, "A hard spindle move requiring precision."),
+            new Move("Russian Swing", 2, "A difficult Russian swing for advanced athletes."),
+            new Move("Transition Move", 1, "A move that lets you switch positions.")
     );
     private final List<Move> rightMoves = Arrays.asList(
-            new Move("Right Circle", false, "A simple right circle to stay balanced."),
-            new Move("Flare", true, "A hard flare move to impress the judges."),
-            new Move("Reverse Circle", true, "A reverse circle move with high difficulty."),
-            new Move("Transition Move", false, "A move that lets you switch positions.")
+            new Move("Right Circle", 1, "A simple right circle to stay balanced."),
+            new Move("Flare", 2, "A hard flare move to impress the judges."),
+            new Move("Reverse Circle", 1, "A reverse circle move with high difficulty."),
+            new Move("Transition Move", 2, "A move that lets you switch positions.")
     );
 
     public PommelHorse() {
@@ -100,7 +102,7 @@ public class PommelHorse extends Room {
 
         System.out.println("Available moves at " + position + " position:");
         for (Move move : moves) {
-            System.out.println("- " + move.getName() + " (" + (move.getDifficulty() ? "hard" : "easy") + ")");
+            System.out.println("- " + move.getName() + "Difficulty:" + move.getDifficulty());
         }
         System.out.println("Type the name of the move you want to perform:");
 
@@ -118,7 +120,7 @@ public class PommelHorse extends Room {
     private void executeMove(Move move, Player player) {
         int confidenceChange;
 
-        if (move.getDifficulty()) {
+        if (move.getDifficulty() == 2) {
             System.out.println("This is a hard move and requires a minigame.");
             boolean minigameResult = playMinigame();
             if (minigameResult) {

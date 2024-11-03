@@ -34,9 +34,8 @@ public class BalanceBeam extends Room {
      * Loads Moves into an array.
      */
     public void loadSkills() {
-        Move one = new Move("cartwheel", 15.0, "A desciption of a cartwheel");
-        Move two = new Move("back handspring", 20.0,
-                "A desciption of a back handspring");
+        Move one = new Move("cartwheel", 15, "A desciption of a cartwheel");
+        Move two = new Move("back handspring", 20, "A desciption of a back handspring");
         skills[0] = one;
         skills[1] = two;
     }

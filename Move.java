@@ -8,7 +8,7 @@ public class Move{
 
     public Move(String name, int difficulty, String description) {
         this.name = name;
-        this.difficulty = difficulty;
+        this.difficulty = difficulty; // scale from 0 to 100
         this.description = description;
     }
 
