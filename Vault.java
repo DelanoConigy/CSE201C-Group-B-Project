@@ -1,5 +1,5 @@
 /*
-* this class if for a event Vault, for right now it just show's you 
+* This class is for the Vault event, for right now it just show's you 
 *"You are entering the vault event"
 * @Author Adash Bhattarai
 */
