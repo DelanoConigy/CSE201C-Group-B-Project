@@ -103,10 +103,4 @@ public class Rings extends Room {
         //}
         endRoom();
     }
-
-    public static void main(String[] args) {
-        Rings rings = new Rings();
-        Player player = new Player("Male");
-        rings.startRoom(player);
-    }
 }
