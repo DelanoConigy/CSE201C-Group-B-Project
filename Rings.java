@@ -61,6 +61,14 @@ public class Rings extends Room {
         System.out.println("You chose: " + moves[choice - 1].getName());
         return choice - 1; // return index of the chosen move
     }
+    
+    /**
+     * Method to end the room.
+     */
+    public void endRoom() {
+    	System.out.println("\nUh-oh, you're out of stamina! The Rings event is over.");
+    	System.out.println("Final score: " + totalRingScore);
+    }
 
     /**
      * Method to perform the player-selected move.
@@ -82,6 +90,7 @@ public class Rings extends Room {
             int moveIndex = chooseMove();
             //performMove(moveIndex, player);
         //}
+        endRoom();
             
             
         //endRoom(totalRingScore);
