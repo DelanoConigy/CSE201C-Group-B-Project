@@ -77,9 +77,11 @@ public class test {
 			}
 			System.out.println(rooms.get(rooms.size() - 1));
 			String room = in.nextLine();
-			System.out.println("\n======================================");
-			System.out.println("\tStart of " + room);
-			System.out.println("======================================");
+			if(rooms.contains(room)) {
+                System.out.println("\n======================================");
+                System.out.println("\tStart of " + room);
+                System.out.println("======================================");
+            }
 			if (room.equals("Pommel")) {
 				pommelRoom.startRoom(p);
 				rooms.remove(rooms.indexOf("Pommel"));
