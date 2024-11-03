@@ -7,8 +7,6 @@ import java.util.*;
  */
 
 public class UnevenBars extends Room {
-	// private Skills[];
-	private int elapsedTime;
 
 	private Player player;
 	private String roomDescription;
@@ -16,7 +14,6 @@ public class UnevenBars extends Room {
 	private String instructions2;
 	private String moveChoice;
 	private int gripStrength;
-	private int barsScore;
 	private int moveCount;
 	private int maxMoveCount;
 	private String[] messages = new String[6];
@@ -26,7 +23,13 @@ public class UnevenBars extends Room {
 	private ArrayList<Move> combo2 = new ArrayList<>();
 	private ArrayList<Move> combo3 = new ArrayList<>();
 
+	/**
+	 * A class constructor that will substantiate the room to be playable with
+	 * different statistics.
+	 * 
+	 */
 	public UnevenBars() {
+		super(); // sets the room score to 0
 		this.roomDescription = "Welcome to the Uneven Bars event! Throughout this event you will be provided with choices of which move to make. \n"
 				+ "These moves are dependent on your skill (specifically strength) and confidence levels so choose wisely. \n"
 				+ "The landing moves are more so based off your balance level. \n"
@@ -37,7 +40,6 @@ public class UnevenBars extends Room {
 		this.instructions2 = "Please choose the following moves, be wary that each move has a chance of failing!"
 				+ "enter [Q] to quit";
 		this.gripStrength = 0;
-		this.barsScore = 0;
 		this.moveCount = 0;
 		this.maxMoveCount = 10;
 	}
@@ -76,7 +78,7 @@ public class UnevenBars extends Room {
 
 		if ((this.player.getStrength() + (this.player.getConfidence() / 2) + random.nextInt(0, 11)
 				+ this.gripStrength) >= move.getDifficulty()) {
-			updateScore(move.getDifficulty());
+			this.setScore(move.getDifficulty() + this.getScore());
 			this.player.setConfidence(player.getConfidence() + 2);
 			System.out.println(successMsg);
 			return true;
@@ -85,15 +87,6 @@ public class UnevenBars extends Room {
 
 		System.out.println(failMsg);
 		return false;
-	}
-
-	/**
-	 * Updates the count of points in the room earned.
-	 * 
-	 * @param amount The amount of points that the total will be increase by.
-	 */
-	public void updateScore(int amount) {
-		this.barsScore += amount;
 	}
 
 	/**
@@ -200,7 +193,7 @@ public class UnevenBars extends Room {
 	 * Prints the current points that have been earned in the room.
 	 */
 	private void printScore() {
-		System.out.println("Total points earned in this room: " + this.barsScore);
+		System.out.println("Total points earned in this room: " + this.getScore());
 	}
 
 	/**
@@ -249,8 +242,9 @@ public class UnevenBars extends Room {
 	 */
 	@Override
 	public void startRoom(Player player) {
-		storeMessages();
 		loadMoves();
+		storeMessages();
+
 		Scanner scan = new Scanner(System.in);
 		this.player = player;
 
@@ -260,10 +254,9 @@ public class UnevenBars extends Room {
 			playGame(scan);
 		}
 
-		player.setPoints(player.getPoints() + this.barsScore);
+		player.setPoints(player.getPoints() + (int) this.getScore()); // temporary cast
 		System.out.println("Thank you for playing the Uneven Bars Event!");
 		System.out.println("Total points over all rooms: " + player.getPoints());
-		//scan.close();
-	}
 
+	}
 }
