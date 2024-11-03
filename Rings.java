@@ -102,10 +102,6 @@ public class Rings extends Room {
             //performMove(moveIndex, player);
         //}
         endRoom();
-            
-            
-        //endRoom(totalRingScore);
-        //System.out.println("You're out of stamina. Event over! Your total score: " + totalRingScore);
     }
 
     public static void main(String[] args) {
