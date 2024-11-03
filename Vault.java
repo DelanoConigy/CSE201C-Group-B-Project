@@ -1,14 +1,25 @@
 /*
-* this class if for a event Vault
+* this class if for a event Vault, for right now after running it just say's hello world
 * @Author Adash Bhattarai
 */
 
-public class Vault extends Room {
+import java.util.Scanner;
+
 
 public class Vault extends Room{
-    
+	private String rules = "Hello world";
+	
 
-		System.out.println("Hello World")
-
+@Override
+	public void startRoom(Player player) {
+	
+	System.out.println(rules);
+	
+	
+	
+		
+		
 	}
+
+	
 }
