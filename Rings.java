@@ -67,7 +67,7 @@ public class Rings extends Room {
      */
     public void endRoom() {
     	System.out.println("\nUh-oh, you're out of stamina! The Rings event is over.");
-    	System.out.println("Final score: " + totalRingScore);
+    	System.out.println("Final Rings score: " + totalRingScore);
     }
 
     /**
