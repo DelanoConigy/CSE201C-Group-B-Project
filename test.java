@@ -51,8 +51,6 @@ public class test {
 		System.out.println("Your skills are as follows: Strength - " + strength + ", Speed - " + speed + ". Balance - "
 				+ balance + ", Confidence: " + confidence);
 
-//		Player p = new Player(gender);
-
 		// Create Player and Rooms
 		Player p = new Player(gender, confidence, strength, speed, balance);
 		Room pommelRoom = new PommelHorse();
