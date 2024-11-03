@@ -1,14 +1,20 @@
-
 import java.util.*;
-//Test file for Section C Group B
+/**
+ * Test file for Section C Group B
+ * 
+ * @author Delano Conigy, Rayne Elling, etc
+ */
 
 public class test {
 	public static void main(String[] args) {
+		// Print welcome messages
 		Scanner in = new Scanner(System.in);
 		System.out.println(
 				"Welcome to Go For The Gold! This game tests your skills throughout different gymnastics events.");
 		System.out.println(
 				"Throughout the game you will be presented with choices. Please type exactly what is displayed in order to give your answer choice.");
+
+		// Start character customization
 		System.out.println("It's time to enter the event. Let's customize your character!");
 		System.out.println("Please choose a gender: Female or Male");
 		String gender = in.next();
@@ -20,6 +26,7 @@ public class test {
 		System.out.println("Welcome " + name + "! We are so excited to see you here to represent " + country + ".");
 		System.out.println("Your gender is " + gender);
 
+		// Start customizing skill levles
 		System.out.println(
 				"Now it's time to establish your skill level. How confident are you in your abilities? Choose a number 1-10.");
 		int confidence = Integer.parseInt(in.next());
@@ -46,6 +53,7 @@ public class test {
 
 //		Player p = new Player(gender);
 
+		// Create Player and Rooms
 		Player p = new Player(gender, confidence, strength, speed, balance);
 		Room pommelRoom = new PommelHorse();
 		Room floorRoom = new Floor();
@@ -61,6 +69,7 @@ public class test {
 		rooms.add("Uneven Bars");
 		rooms.add("Balance Beam");
 
+		// Cycle through the rooms
 		in.nextLine();
 		System.out.print("Now it's time to compete!");
 		while (rooms.size() > 0) {
