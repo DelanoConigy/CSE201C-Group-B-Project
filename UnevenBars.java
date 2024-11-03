@@ -263,7 +263,7 @@ public class UnevenBars extends Room {
 		player.setPoints(player.getPoints() + this.barsScore);
 		System.out.println("Thank you for playing the Uneven Bars Event!");
 		System.out.println("Total points over all rooms: " + player.getPoints());
-		scan.close();
+		//scan.close();
 	}
 
 }
