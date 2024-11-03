@@ -1,5 +1,6 @@
 /*
-* this class if for a event Vault, for right now after running it just say's hello world
+* this class if for a event Vault, for right now it just show's you 
+*"You are entering the vault event"
 * @Author Adash Bhattarai
 */
 
@@ -7,7 +8,13 @@ import java.util.Scanner;
 
 
 public class Vault extends Room{
-	private String rules = "Hello world";
+	private String rules;
+	
+	
+	//Constructor
+	public Vault() {
+		rules = "You are entering the vault event";
+	}
 	
 
 @Override
@@ -17,6 +24,8 @@ public class Vault extends Room{
 	
 	
 	
+		
+		
 		
 		
 	}
