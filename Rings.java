@@ -75,7 +75,18 @@ public class Rings extends Room {
      * @param int move
      * @param Player player
      */
-    public void performMove(int move, Player player) {}
+    public void performMove(int move, Player player) {
+    	
+    }
+    
+    /**
+     * Method to hold the user-chosen move.
+     * @param int time Time in seconds to hold
+     * @param Move move The move to hold
+     */
+    public void holdMove(int time, Move move) {
+    	
+    }
 
     /**
      * Override of the abstract startRoom() method
