@@ -99,6 +99,7 @@ public class UnevenBars extends Room {
 	}
 
 	/**
+	 * Prints a certain index of Strings in the message array. 
 	 * 
 	 * @param index The index in the messages array that you want to print.
 	 */
