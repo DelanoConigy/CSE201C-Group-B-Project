@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Class to control the Uneven Bars event
  * 
- * @author Delano Conigy
+ * @author Delano Conigyy
  */
 
 public class UnevenBars extends Room {
@@ -99,7 +99,7 @@ public class UnevenBars extends Room {
 	}
 
 	/**
-	 * Prints a certain index of Strings in the message array. 
+	 * Prints a certain index of Strings in the message array.
 	 * 
 	 * @param index The index in the messages array that you want to print.
 	 */
@@ -149,29 +149,29 @@ public class UnevenBars extends Room {
 	 */
 	private void performCombo(int option) {
 		switch (option) {
-		case 1:
-			for (Move move : combo1) {
-				if (!(performMove(move))) {
-					break;
+			case 1:
+				for (Move move : combo1) {
+					if (!(performMove(move))) {
+						break;
+					}
 				}
-			}
-			break;
-		case 2:
-			for (Move move : combo2) {
-				if (!(performMove(move))) {
-					break;
+				break;
+			case 2:
+				for (Move move : combo2) {
+					if (!(performMove(move))) {
+						break;
+					}
 				}
-			}
-			break;
-		case 3:
-			for (Move move : combo3) {
-				if (!(performMove(move))) {
-					break;
+				break;
+			case 3:
+				for (Move move : combo3) {
+					if (!(performMove(move))) {
+						break;
+					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -207,31 +207,31 @@ public class UnevenBars extends Room {
 		showMessage(1); // Give the player options on what to do
 		String playerChoice = scan.next();
 		switch (playerChoice) {
-		case "C":
-			printCombos();
-			performCombo(scan.nextInt());
-			System.out.println();
-			break;
-		case "M":
-			printMoves(moves);
-			showMessage(2);
-			performMove(moves.get(scan.nextInt()));
-			System.out.println();
-			break;
-		case "H":
-			hang();
-			System.out.println();
-			break;
-		case "S":
-			printScore();
-			System.out.println();
-			break;
-		case "Q":
-			this.moveCount = 10; // a temporary way to quit out of the game
-			break;
-		default:
-			System.out.println("Invalid Input");
-			break;
+			case "C":
+				printCombos();
+				performCombo(scan.nextInt());
+				System.out.println();
+				break;
+			case "M":
+				printMoves(moves);
+				showMessage(2);
+				performMove(moves.get(scan.nextInt() - 1));
+				System.out.println();
+				break;
+			case "H":
+				hang();
+				System.out.println();
+				break;
+			case "S":
+				printScore();
+				System.out.println();
+				break;
+			case "Q":
+				this.moveCount = 10; // a temporary way to quit out of the game
+				break;
+			default:
+				System.out.println("Invalid Input");
+				break;
 		}
 	}
 
