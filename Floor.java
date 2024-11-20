@@ -1,12 +1,13 @@
-import java.util.Scanner;
+
 import java.util.ArrayList;
+
 /**
  * Class to control the floor room.
- * 
+ *
  * @author Dakota Oudeman
  */
-
 public class Floor extends Room {
+
     /**
      * The total moves left before the end of the room.
      */
@@ -17,7 +18,6 @@ public class Floor extends Room {
      */
     private ArrayList<Move> skills;
 
-
     /**
      * Standard constructor method.
      */
@@ -27,9 +27,9 @@ public class Floor extends Room {
     }
 
     /**
-     * Starts the Floor event. This will have the player play through the
-     * entire room before returning them back to the main menu.
-     * 
+     * Starts the Floor event. This will have the player play through the entire
+     * room before returning them back to the main menu.
+     *
      * @param player The player object that contains important attributes.
      */
     public void startRoom(Player player) {
@@ -45,28 +45,28 @@ public class Floor extends Room {
 
     /**
      * Welcome message displayed upon entering the room.
-     * 
+     *
      * @param p Player object
      */
     private void displayWelcome(Player p) {
         System.out.print("Welcome to the Floor Room. You will be given 10 chances to make moves.\n"
-                        + "Based on your different attributes they will determine whether you\n"
-                        + "succesfully complete the move or fail. Successful moves will count\n"
-                        + "towards your total score.\n");
+                + "Based on your different attributes they will determine whether you\n"
+                + "succesfully complete the move or fail. Successful moves will count\n"
+                + "towards your total score.\n");
     }
 
     /**
      * Goodbye message displayed when leaving the room.
-     * 
+     *
      * @param p Player object
      */
     private void displayGoodbye(Player p) {
         System.out.println("The floor room is now over, goodbye.");
     }
-    
+
     /**
      * Will ask the user to select a move from a randomized set of moves
-     * 
+     *
      * @return The selected move
      */
     private Move selectMove() {
@@ -75,7 +75,7 @@ public class Floor extends Room {
 
     /**
      * Helper method to load the skills ArrayList with various moves.
-     * 
+     *
      * @return A loaded ArrayList of moves.
      */
     private ArrayList<Move> loadSkills() {
@@ -85,7 +85,7 @@ public class Floor extends Room {
     /**
      * Attempts a move specified by the player, based on various attributes like
      * player confidence, strength, speed, and balance.
-     * 
+     *
      * @param p Player object that has the player attributes.
      * @param m Which move the player will be trying to complete.
      * @return true if skill completed successfully, false otherwise.

@@ -1,13 +1,14 @@
-import java.util.Scanner;
+
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Class to control the balance beam event.
- * 
+ *
  * @author Rayne Elling
  */
-
 public class BalanceBeam extends Room {
+
     private double totalBeamScore;
     private int movesLeft;
     private String roomDescription;
@@ -54,34 +55,33 @@ public class BalanceBeam extends Room {
         Move nineteen = new Move("Aerial Walkover", 1, "Stepping forward, the gymnast flips forward with their body extended off of the beam, landing on both feet.");
         Move twenty = new Move("Double Back Tuck", 2, "The gymnast performs two consecutive tucks off of the beam.");
         Move twentyOne = new Move("Arabian Double Front", 3, "The gymnast jumps into the air from a roundoff entry, performs a half turn, and tucks themselves to complete two forward somersaults.");
-        skills[0] = one; 
+        skills[0] = one;
         skills[1] = two;
         skills[2] = three;
         skills[3] = four;
         skills[4] = five;
         skills[5] = six;
-        skills[6] = seven; 
+        skills[6] = seven;
         skills[7] = eight;
         skills[8] = nine;
         skills[9] = ten;
         skills[10] = eleven;
         skills[11] = twelve;
-        skills[12] = thirteen; 
+        skills[12] = thirteen;
         skills[13] = fourteen;
         skills[14] = fifteen;
         skills[15] = sixteen;
         skills[16] = seventeen;
         skills[17] = eighteen;
-        skills[18] = nineteen; 
+        skills[18] = nineteen;
         skills[19] = twenty;
         skills[20] = twentyOne;
 
-        
     }
 
     /**
      * Performs the given skill.
-     * 
+     *
      * @param index of skill/Move
      * @return true if move completed successfully, false otherwise
      */
@@ -90,24 +90,23 @@ public class BalanceBeam extends Room {
         int skillLevel = p.getStrength() + p.getBalance();
         int confidence = p.getConfidence();
         int total = calculatePerformance(difficulty, skillLevel, confidence);
-        
 
-        if(difficulty == 3) {
+        if (difficulty == 3) {
             //System.out.println(total + " >=? " + 25);
             return total >= 25;
-        } else if(difficulty == 2) {
+        } else if (difficulty == 2) {
             //System.out.println(total + " >=? " + 20);
             return total >= 20;
         } else {
             //System.out.println(total + " >=? " + 15);
             return total >= 15;
         }
-        
+
     }
 
     /**
      * Calculates the performance of the athlete for a given skill.
-     * 
+     *
      * @return the score calculated for the skill.
      */
     public int calculatePerformance(int difficulty, int skillLevel, int confidence) {
@@ -127,7 +126,7 @@ public class BalanceBeam extends Room {
 
     /**
      * Updates the score for the event.
-     * 
+     *
      * @param amount to update by.
      */
     public void updateScore(double amount) {
@@ -149,11 +148,11 @@ public class BalanceBeam extends Room {
         messages[7] = "Let's move across the beam. Which skill will you attempt next?";
         messages[8] = "It's time to dismount. Choose your final skill.";
     }
-    
+
     private void updateScore(int difficulty) {
-        if(difficulty == 3) {
+        if (difficulty == 3) {
             totalBeamScore += 3.5;
-        } else if(difficulty == 2) {
+        } else if (difficulty == 2) {
             totalBeamScore += 2.5;
         } else {
             totalBeamScore += 1.5;
@@ -162,7 +161,7 @@ public class BalanceBeam extends Room {
 
     /**
      * Displays the given message.
-     * 
+     *
      * @param Index of message.
      */
     private void showMessage(int i) {
@@ -172,36 +171,36 @@ public class BalanceBeam extends Room {
     /**
      * Displays options for user to see their score, skills, or move on to
      * choosing a skill.
-     * 
+     *
      * @param Scanner to take input.
      */
     private void displayOptions(Scanner in, Player p) {
         boolean valid = true;
         String input;
         int skillNum = -1;
-        while(valid) {
+        while (valid) {
             showMessage(count + 2);
             System.out.println("Choose one of the following skills to complete: ");
             System.out.println("1. " + skills[count * 3].getName() + "\n2. " + skills[(count * 3) + 1].getName() + "\n3. " + skills[(count * 3) + 2].getName() + "\n" + "More Info");
             input = in.nextLine();
-            if(input.equals("1")) {
+            if (input.equals("1")) {
                 skillNum = (count * 3);
                 valid = false;
-            } else if(input.equals("2")) {
+            } else if (input.equals("2")) {
                 skillNum = (count * 3) + 1;
                 valid = false;
-            } else if(input .equals("3")) {
+            } else if (input.equals("3")) {
                 skillNum = (count * 3) + 2;
                 valid = false;
-            } else if (input.equals("More Info")){
+            } else if (input.equals("More Info")) {
                 System.out.println();
                 System.out.println(skills[count * 3].getName() + ": " + skills[count * 3].getDescription() + " This move has a difficulty of: " + skills[(count * 3)].getDifficulty());
                 System.out.println(skills[(count * 3) + 1].getName() + ": " + skills[(count * 3) + 1].getDescription() + " This move has a difficulty of: " + skills[(count * 3) + 1].getDifficulty());
-                System.out.println(skills[(count * 3) + 2].getName() + ": " + skills[(count * 3) + 2].getDescription()+ " This move has a difficulty of: " + skills[(count * 3) + 2].getDifficulty() + "\n");
-            } else if(input.equals("Skills")){
+                System.out.println(skills[(count * 3) + 2].getName() + ": " + skills[(count * 3) + 2].getDescription() + " This move has a difficulty of: " + skills[(count * 3) + 2].getDifficulty() + "\n");
+            } else if (input.equals("Skills")) {
                 System.out.println("Your skills are as follows: Strength - " + p.getStrength() + ", Speed - " + p.getSpeed() + ", Balance - "
                         + p.getBalance() + ", Confidence: " + p.getConfidence() + "\n");
-            } else if(input.equals("Score")) {
+            } else if (input.equals("Score")) {
                 System.out.println("Your total balance beam score is: " + totalBeamScore);
                 System.out.println("Your overall score is: " + p.getPoints() + "\n");
             } else {
@@ -210,32 +209,31 @@ public class BalanceBeam extends Room {
             }
         }
         //performSkill(skillNum, p);
-        if(performSkill(skillNum, p)) {
+        if (performSkill(skillNum, p)) {
             System.out.println("\nSuccess!");
-            if(p.getConfidence() != 10) {
+            if (p.getConfidence() != 10) {
                 p.addConfidence(1);
             }
             updateScore(skills[skillNum].getDifficulty());
         } else {
             System.out.println("\nFailure.");
-            if(p.getConfidence() != 1) {
+            if (p.getConfidence() != 1) {
                 p.addConfidence(-2);
             }
-            
+
         }
-        
+
         System.out.println("Your new confidence level is: " + p.getConfidence());
         System.out.println("Your current score is: " + totalBeamScore + "\n");
         count++;
         movesLeft--;
-        
+
     }
-    
 
     @Override
     /**
      * Establishes the sequence of events for Balance Beam room.
-     * 
+     *
      * @param Player who is competing in the event.
      */
     public void startRoom(Player player) {
@@ -245,18 +243,15 @@ public class BalanceBeam extends Room {
         showMessage(1);
         //System.out.println("Please choose a skill to complete: cartwheel or back handspring");
         Scanner in = new Scanner(System.in);
-        while(movesLeft > -1) {
+        while (movesLeft > -1) {
             displayOptions(in, player);
             //System.out.println("Number of moves left: " + movesLeft + "\n");
         }
-        
+
         player.setPoints(player.getPoints() + (int) totalBeamScore);
         System.out.println("Your current score is " + player.getPoints());
         System.out.println("Heading back to the main event...");
-        
-        
-        
-        
+
     }
 
 }

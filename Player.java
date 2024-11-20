@@ -4,7 +4,6 @@
  *
  * @author Delano Conigy, Daktoa Oudeman, etc
  */
-
 public class Player {
 
     private String gender;
@@ -12,7 +11,7 @@ public class Player {
 
     /**
      * Constructs a Player given gender and skill levels.
-     * 
+     *
      * @param gender of player.
      * @param confidence level.
      * @param strength level.
@@ -27,10 +26,10 @@ public class Player {
         this.balance = balance;
         this.points = 0;
     }
-    
+
     /**
      * Constructs a Player given only gender.
-     * 
+     *
      * @param gender of player.
      */
     public Player(String gender) {
@@ -44,7 +43,7 @@ public class Player {
 
     /**
      * Gets the gender of the player
-     * 
+     *
      * @return Gender of player.
      */
     public String getGender() {
@@ -53,7 +52,7 @@ public class Player {
 
     /**
      * Gets the speed of the player
-     * 
+     *
      * @return Speed of player.
      */
     public int getSpeed() {
@@ -62,7 +61,7 @@ public class Player {
 
     /**
      * Gets the strength of the player
-     * 
+     *
      * @return Strength of player.
      */
     public int getStrength() {
@@ -71,7 +70,7 @@ public class Player {
 
     /**
      * Gets the balance of the player
-     * 
+     *
      * @return Balance of player.
      */
     public int getBalance() {
@@ -80,7 +79,7 @@ public class Player {
 
     /**
      * Gets the confidence of the player
-     * 
+     *
      * @return Confidence of player.
      */
     public int getConfidence() {
@@ -89,25 +88,25 @@ public class Player {
 
     /**
      * Gets the number of points for the player
-     * 
+     *
      * @return Points of player.
      */
     public int getPoints() {
         return points;
     }
-    
+
     /**
      * Sets the number of points for of the player
-     * 
+     *
      * @param Number of points.
      */
     public void setPoints(int points) {
-    	this.points = points;
+        this.points = points;
     }
 
     /**
      * Sets the confidence of the player
-     * 
+     *
      * @param Confidence of player.
      */
     public void setConfidence(int confidence) {
@@ -122,7 +121,7 @@ public class Player {
 
     /**
      * Adjusts the confidence of the player.
-     * 
+     *
      * @param Confidence to adjust by
      */
     public void addConfidence(int confidence) {
