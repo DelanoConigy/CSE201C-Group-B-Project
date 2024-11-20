@@ -6,7 +6,6 @@ import java.util.*;
  *
  * @author Delano Conigy, Rayne Elling, etc
  */
-
 public class test {
 
     public static void main(String[] args) {

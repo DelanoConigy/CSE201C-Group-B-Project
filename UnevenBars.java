@@ -34,7 +34,8 @@ public class UnevenBars extends Room {
                 + "These moves are dependent on your skill (specifically strength) and confidence levels so choose wisely. \n"
                 + "The landing moves are more so based off your balance level. \n"
                 + "Hanging will allow you to increase your grip strength but slighly reduce confidence. "
-                + "Failing a move will decrease your confidence level but completing will increase it";
+                + "Failing a move will decrease your confidence level but completing will increase it. \n "
+                + "The max points you can earn in this room is 25 points.";
 
         this.instructions = "[C] To perform a premade combo, [M] To string together you own moves, [H] to hang, [S] to present room score, or [Q] to quit";
         this.instructions2 = "Please choose the following moves, be wary that each move has a chance of failing!"
@@ -73,6 +74,10 @@ public class UnevenBars extends Room {
     public boolean performMove(Move move) {
         String successMsg = "Successfully Completed Move";
         String failMsg = "Failed Move";
+        if (this.moveCount >= this.maxMoveCount) {
+            System.out.println("You have run out of moves!");
+            return false;
+        }
         Random random = new Random();
         this.moveCount++; // either option uses a move so can be at the top
 
