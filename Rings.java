@@ -169,6 +169,7 @@ public class Rings extends Room {
         player.setPoints(convertedScore); // Update player's overall score
 
         System.out.println("\nRings event is over! Your total converted score is: " + convertedScore);
+        System.out.println();
     }
 
     public static void main(String[] args) {
