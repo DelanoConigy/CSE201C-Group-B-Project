@@ -49,13 +49,18 @@ public class test {
 
         // Loop until a valid confidence level (1-10) is entered
         while (!validConfidence) {
-            confidence = Integer.parseInt(in.next());
-            if (confidence >= 1 && confidence <= 10) {
-                validConfidence = true; // Valid confidence input, exit loop
-            } else {
-                System.out.println("Please enter a number between 1 and 10 for confidence.");
+            try {
+                confidence = Integer.parseInt(in.next());
+                if (confidence >= 1 && confidence <= 10) {
+                    validConfidence = true; // Valid confidence input, exit loop
+                } else {
+                    System.out.println("Please enter a number between 1 and 10 for confidence.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number between 1 and 10 for confidence.");
             }
         }
+
         System.out.println("You will now have 20 points to disperse across 3 skills: strength, speed, and balance.");
         System.out.println(
                 "The choices you make here will determine how well your athlete performs in certain events. You do not have to use all 20 skill points.");
@@ -67,13 +72,17 @@ public class test {
         // Get strength value
         while (!validInput) {
             System.out.println("You have " + skillPoints + " skill points left. How strong are you? Choose a number 0 - 10");
-            int tempSkillValue = Integer.parseInt(in.next());
-            if (tempSkillValue >= 0 && tempSkillValue <= skillPoints) {
-                strength = tempSkillValue;
-                skillPoints -= tempSkillValue;
-                validInput = true;
-            } else {
-                System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
+            try {
+                int tempSkillValue = Integer.parseInt(in.next());
+                if (tempSkillValue >= 0 && tempSkillValue <= 10) {
+                    strength = tempSkillValue;
+                    skillPoints -= tempSkillValue;
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid input! Strength value cannot exceed 10. Please choose a number between 0 and 10.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number between 0 and 10 for strength.");
             }
         }
         validInput = false;
@@ -81,13 +90,17 @@ public class test {
         // Get speed value
         while (!validInput) {
             System.out.println("You have " + skillPoints + " skill points left. How fast are you? Choose a number 0 - 10");
-            int tempSkillValue = Integer.parseInt(in.next());
-            if (tempSkillValue >= 0 && tempSkillValue <= skillPoints) {
-                speed = tempSkillValue;
-                skillPoints -= tempSkillValue;
-                validInput = true;
-            } else {
-                System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
+            try {
+                int tempSkillValue = Integer.parseInt(in.next());
+                if (tempSkillValue >= 0 && tempSkillValue <= skillPoints) {
+                    speed = tempSkillValue;
+                    skillPoints -= tempSkillValue;
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number between 0 and " + skillPoints + " for speed.");
             }
         }
         validInput = false;
@@ -95,17 +108,21 @@ public class test {
         // Get balance value
         while (!validInput) {
             System.out.println("You have " + skillPoints + " skill points left. How much balance do you have? Choose a number 0 - 10");
-            int tempSkillValue = Integer.parseInt(in.next());
-            if (tempSkillValue >= 0 && tempSkillValue <= skillPoints && tempSkillValue <= 10) {
-                balance = tempSkillValue;
-                skillPoints -= tempSkillValue;
-                validInput = true;
-            } else {
-            	if (tempSkillValue > 10) {
-            		System.out.println("Invalid input! The maximum amount of skill points to one category is 10.");
-            	} else {
-            		System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
-            	}
+            try {
+                int tempSkillValue = Integer.parseInt(in.next());
+                if (tempSkillValue >= 0 && tempSkillValue <= skillPoints && tempSkillValue <= 10) {
+                    balance = tempSkillValue;
+                    skillPoints -= tempSkillValue;
+                    validInput = true;
+                } else {
+                    if (tempSkillValue > 10) {
+                        System.out.println("Invalid input! The maximum amount of skill points to one category is 10.");
+                    } else {
+                        System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
+                    }
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number between 0 and " + skillPoints + " for balance.");
             }
         }
 
