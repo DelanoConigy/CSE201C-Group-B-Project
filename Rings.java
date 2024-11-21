@@ -171,7 +171,6 @@ public class Rings extends Room {
         System.out.println("\nRings event is over! Your total converted score is: " + convertedScore);
     }
 
-    // MAIN METHOD FOR TESTING ONLY
     public static void main(String[] args) {
         Rings rings = new Rings();
         Player player = new Player("Male", 100, 10, 5, 5);
