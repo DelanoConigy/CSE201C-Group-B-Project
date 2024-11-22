@@ -117,7 +117,7 @@ public class Rings extends Room {
 
         // Determine chance of failure
         double baseFailureChance = Math.min(holdTime * 0.25, 0.9); 
-        double confidenceModifier = 1 - (player.getConfidence() / 200.0); 
+        double confidenceModifier = 1 - (Math.min(player.getConfidence(), 10) / 200.0); 
         double failureChance = baseFailureChance * confidenceModifier;
         
         boolean success = Math.random() > failureChance;
@@ -130,8 +130,8 @@ public class Rings extends Room {
             totalRingScore += pointsGained;
             System.out.println("\nSuccess! You held the " + move.getName() + " for " + holdTime + " seconds.");
             System.out.println("You gained " + pointsGained + " points! Total score: " + totalRingScore + "\n");
-            player.addConfidence(10); 
-            if (player.getConfidence() < 100) {
+            player.addConfidence(1); 
+            if (player.getConfidence() < 10) {
             	System.out.println("Your confidence has increased! Current confidence: " + player.getConfidence() + "\n");
             } else {
             	System.out.println("Your confidence was too high to increase! Current confidence: " + player.getConfidence() + "\n");
@@ -140,7 +140,7 @@ public class Rings extends Room {
         } else {
             System.out.println("\nOh no! You failed to hold the " + move.getName() + " after " + holdTime + " seconds.");
             System.out.println("No points gained this time.\n");
-            player.addConfidence(-30); 
+            player.addConfidence(-3); 
             System.out.println("Your confidence has decreased! Current confidence: " + player.getConfidence() + "\n");
         }
 
