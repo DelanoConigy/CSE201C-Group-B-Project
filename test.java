@@ -197,5 +197,7 @@ public class test {
         }
             
         System.out.println("Congratulations! You have competed in all the events.");
+
+        // Need to add the medal award ceremony here
     }
 }
