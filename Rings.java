@@ -130,8 +130,8 @@ public class Rings extends Room {
             totalRingScore += pointsGained;
             System.out.println("\nSuccess! You held the " + move.getName() + " for " + holdTime + " seconds.");
             System.out.println("You gained " + pointsGained + " points! Total score: " + totalRingScore + "\n");
-            player.addConfidence(1); 
             if (player.getConfidence() < 10) {
+            	player.addConfidence(1); 
             	System.out.println("Your confidence has increased! Current confidence: " + player.getConfidence() + "\n");
             } else {
             	System.out.println("Your confidence was too high to increase! Current confidence: " + player.getConfidence() + "\n");
@@ -172,9 +172,4 @@ public class Rings extends Room {
         System.out.println();
     }
 
-    public static void main(String[] args) {
-        Rings rings = new Rings();
-        Player player = new Player("Male", 100, 10, 5, 5);
-        rings.startRoom(player);
-    }
 }
