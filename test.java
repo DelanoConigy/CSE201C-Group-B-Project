@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 /**
@@ -10,12 +9,11 @@ import java.util.*;
 public class test {
 
     public static void main(String[] args) {
-        // Print welcome messages
         Scanner in = new Scanner(System.in);
         System.out.println(
-                "Welcome to Go For The Gold! This game tests your skills throughout different gymnastics events.");
+                "Welcome to Go For The Gold!\nThis game tests your skills throughout different gymnastics events.");
         System.out.println(
-                "Throughout the game you will be presented with choices. Please type exactly what is displayed in order to give your answer choice.");
+                "Throughout the game you will be presented with choices. Please type exactly what is displayed in order to give your answer choice.\n");
 
         // Start character customization
         System.out.println("It's time to enter the event. Let's customize your character!");
@@ -38,8 +36,8 @@ public class test {
         String name = in.nextLine();
         System.out.println("What country are you competing for? Type the country name here: ");
         String country = in.nextLine();
-        System.out.println("Welcome " + name + "! We are so excited to see you here to represent " + country + ".");
-        System.out.println("Your gender is " + gender + ".");
+        System.out.println("\nWelcome " + name + "! We are so excited to see you here to represent " + country + ".");
+        System.out.println("Your gender is " + gender + ".\n");
 
         // Start customizing skill levels
         System.out.println("Now it's time to establish your skill level. How confident are you in your abilities? Choose a number 1-10.");
@@ -61,7 +59,7 @@ public class test {
             }
         }
 
-        System.out.println("You will now have 20 points to disperse across 3 skills: strength, speed, and balance.");
+        System.out.println("\nYou will now have 20 points to disperse across 3 skills: strength, speed, and balance.");
         System.out.println(
                 "The choices you make here will determine how well your athlete performs in certain events. You do not have to use all 20 skill points.");
         int skillPoints = 20;
@@ -71,7 +69,7 @@ public class test {
 
         // Get strength value
         while (!validInput) {
-            System.out.println("You have " + skillPoints + " skill points left. How strong are you? Choose a number 0 - 10");
+            System.out.println("\nYou have " + skillPoints + " skill points left. How strong are you? Choose a number 0 - 10");
             try {
                 int tempSkillValue = Integer.parseInt(in.next());
                 if (tempSkillValue >= 0 && tempSkillValue <= 10) {
@@ -89,14 +87,16 @@ public class test {
 
         // Get speed value
         while (!validInput) {
-            System.out.println("You have " + skillPoints + " skill points left. How fast are you? Choose a number 0 - 10");
+            System.out.println("\nYou have " + skillPoints + " skill points left. How fast are you? Choose a number 0 - 10");
             try {
                 int tempSkillValue = Integer.parseInt(in.next());
-                if (tempSkillValue >= 0 && tempSkillValue <= skillPoints) {
+                if (tempSkillValue >= 0 && tempSkillValue <= skillPoints && tempSkillValue <= 10) {
                     speed = tempSkillValue;
                     skillPoints -= tempSkillValue;
                     validInput = true;
-                } else {
+                } else if(tempSkillValue > 10){
+                    System.out.println("Invalid input! Speed value cannot exceed 10. Please choose a number between 0 and 10.");   
+                }else {
                     System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
                 }
             } catch (NumberFormatException e) {
@@ -107,7 +107,7 @@ public class test {
 
         // Get balance value
         while (!validInput) {
-            System.out.println("You have " + skillPoints + " skill points left. How much balance do you have? Choose a number 0 - 10");
+            System.out.println("\nYou have " + skillPoints + " skill points left. How much balance do you have? Choose a number 0 - 10");
             try {
                 int tempSkillValue = Integer.parseInt(in.next());
                 if (tempSkillValue >= 0 && tempSkillValue <= skillPoints && tempSkillValue <= 10) {
@@ -117,6 +117,8 @@ public class test {
                 } else {
                     if (tempSkillValue > 10) {
                         System.out.println("Invalid input! The maximum amount of skill points to one category is 10.");
+                    } else if(tempSkillValue > 10) {
+                        System.out.println("Invalid input! Balance value cannot exceed 10. Please choose a number between 0 and 10."); 
                     } else {
                         System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
                     }
@@ -126,7 +128,7 @@ public class test {
             }
         }
 
-        System.out.println("Your skills are as follows: Strength - " + strength + ", Speed - " + speed + ". Balance - "
+        System.out.println("\nYour skills are as follows: Strength - " + strength + ", Speed - " + speed + ". Balance - "
                 + balance + ", Confidence: " + confidence);
 
         // Create Player and Rooms
@@ -147,9 +149,19 @@ public class test {
 
         // Cycle through the rooms
         in.nextLine();
-        System.out.print("Now it's time to compete!");
+        System.out.print("\nNow it's time to compete!\n");
         while (rooms.size() > 0) {
-            System.out.println("Pick the event you want to compete in: ");
+            System.out.println("Your current score is: " + p.getPoints());
+            if(p.getPoints() <= 50) {
+               System.out.println("You are " + (50 - p.getPoints()) + " points away from winning Bronze!"); 
+            } else if(p.getPoints() <= 100) {
+                System.out.println("You are " + (100 - p.getPoints()) + " points away from winning Silver!"); 
+            } else if(p.getPoints() <= 150) {
+                System.out.println("You are " + (150 - p.getPoints()) + " points away from winning Gold!"); 
+            }
+            //System.out.println("Your skills are as follows: Strength - " + strength + ", Speed - " + speed + ". Balance - "
+                    //+ balance + ", Confidence: " + confidence);
+            System.out.println("\nPick the event you want to compete in: ");
             for (int i = 0; i < rooms.size() - 1; i++) {
                 System.out.print(rooms.get(i) + ", ");
             }
@@ -199,5 +211,17 @@ public class test {
         System.out.println("Congratulations! You have competed in all the events.");
 
         // Need to add the medal award ceremony here
+        System.out.println("Your total score is: " + p.getPoints());
+        
+        if(p.getPoints() <= 150 && p.getPoints() > 100) {
+            System.out.println("Congratulations! You have earned a gold medal for " + country + "!");
+        } else if(p.getPoints() <= 100 && p.getPoints() > 50) {
+            System.out.println("Congratulations! You have earned a silver medal for " + country + "!");
+        } else {
+            System.out.println("Congratulations! You have earned a bronze medal for " + country + "!");
+        }
+        
+        
+        }
     }
 }
