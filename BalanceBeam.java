@@ -2,11 +2,13 @@
 import java.util.Random;
 import java.util.Scanner;
 
+
 /**
- * Class to control the balance beam event.
- *
+ * Class to control the balance beam event.  
+ *  
  * @author Rayne Elling
  */
+
 public class BalanceBeam extends Room {
 
     private double totalBeamScore;
@@ -24,7 +26,8 @@ public class BalanceBeam extends Room {
      * and movesLeft
      */
     public BalanceBeam() {
-        roomDescription = "Welcome to the balance beam event! Throughout this event you will be provided with choices of which move to make.These moves are dependent on your skill and confidence levels, so choose wisely.";
+        roomDescription = "Welcome to the balance beam event! Throughout this event you will be provided with choices of which move to make. "
+                + "\nThese moves are dependent on your skill and confidence levels, so choose wisely.";
         instructions = "At any point during the room you can type \"Skills\" or \"Score\" to view your skills or score.";
         totalBeamScore = 0;
         movesLeft = 6;
@@ -55,33 +58,34 @@ public class BalanceBeam extends Room {
         Move nineteen = new Move("Aerial Walkover", 1, "Stepping forward, the gymnast flips forward with their body extended off of the beam, landing on both feet.");
         Move twenty = new Move("Double Back Tuck", 2, "The gymnast performs two consecutive tucks off of the beam.");
         Move twentyOne = new Move("Arabian Double Front", 3, "The gymnast jumps into the air from a roundoff entry, performs a half turn, and tucks themselves to complete two forward somersaults.");
-        skills[0] = one;
+        skills[0] = one; 
         skills[1] = two;
         skills[2] = three;
         skills[3] = four;
         skills[4] = five;
         skills[5] = six;
-        skills[6] = seven;
+        skills[6] = seven; 
         skills[7] = eight;
         skills[8] = nine;
         skills[9] = ten;
         skills[10] = eleven;
         skills[11] = twelve;
-        skills[12] = thirteen;
+        skills[12] = thirteen; 
         skills[13] = fourteen;
         skills[14] = fifteen;
         skills[15] = sixteen;
         skills[16] = seventeen;
         skills[17] = eighteen;
-        skills[18] = nineteen;
+        skills[18] = nineteen; 
         skills[19] = twenty;
         skills[20] = twentyOne;
 
+        
     }
 
     /**
      * Performs the given skill.
-     *
+     * 
      * @param index of skill/Move
      * @return true if move completed successfully, false otherwise
      */
@@ -90,6 +94,7 @@ public class BalanceBeam extends Room {
         int skillLevel = p.getStrength() + p.getBalance();
         int confidence = p.getConfidence();
         int total = calculatePerformance(difficulty, skillLevel, confidence);
+        
 
         if (difficulty == 3) {
             //System.out.println(total + " >=? " + 25);
@@ -101,12 +106,12 @@ public class BalanceBeam extends Room {
             //System.out.println(total + " >=? " + 15);
             return total >= 15;
         }
-
+        
     }
 
     /**
      * Calculates the performance of the athlete for a given skill.
-     *
+     * 
      * @return the score calculated for the skill.
      */
     public int calculatePerformance(int difficulty, int skillLevel, int confidence) {
@@ -126,7 +131,7 @@ public class BalanceBeam extends Room {
 
     /**
      * Updates the score for the event.
-     *
+     * 
      * @param amount to update by.
      */
     public void updateScore(double amount) {
@@ -140,7 +145,7 @@ public class BalanceBeam extends Room {
     private void storeMessages() {
         messages[0] = roomDescription;
         messages[1] = instructions;
-        messages[2] = "You walk up to the beam. Please choose the skill you would like to mount the beam with: ";
+        messages[2] = "\nYou walk up to the beam. Please choose the skill you would like to mount the beam with: ";
         messages[3] = "You are now on the beam. Which skill will you perform next? ";
         messages[4] = "It's time to wow the judges. Which skill would you like to perform?";
         messages[5] = "Now let's add a spin! Select one of the following skills.";
@@ -148,20 +153,20 @@ public class BalanceBeam extends Room {
         messages[7] = "Let's move across the beam. Which skill will you attempt next?";
         messages[8] = "It's time to dismount. Choose your final skill.";
     }
-
+    
     private void updateScore(int difficulty) {
         if (difficulty == 3) {
-            totalBeamScore += 3.5;
+            totalBeamScore += 3.6;
         } else if (difficulty == 2) {
-            totalBeamScore += 2.5;
+            totalBeamScore += 2.6;
         } else {
-            totalBeamScore += 1.5;
+            totalBeamScore += 1.6;
         }
     }
 
     /**
      * Displays the given message.
-     *
+     * 
      * @param Index of message.
      */
     private void showMessage(int i) {
@@ -171,7 +176,7 @@ public class BalanceBeam extends Room {
     /**
      * Displays options for user to see their score, skills, or move on to
      * choosing a skill.
-     *
+     * 
      * @param Scanner to take input.
      */
     private void displayOptions(Scanner in, Player p) {
@@ -220,20 +225,21 @@ public class BalanceBeam extends Room {
             if (p.getConfidence() != 1) {
                 p.addConfidence(-2);
             }
-
+            
         }
-
+        
         System.out.println("Your new confidence level is: " + p.getConfidence());
-        System.out.println("Your current score is: " + totalBeamScore + "\n");
+        System.out.println("Your current score is: " + (int) totalBeamScore + "\n");
         count++;
         movesLeft--;
-
+        
     }
+    
 
     @Override
     /**
      * Establishes the sequence of events for Balance Beam room.
-     *
+     * 
      * @param Player who is competing in the event.
      */
     public void startRoom(Player player) {
@@ -247,11 +253,11 @@ public class BalanceBeam extends Room {
             displayOptions(in, player);
             //System.out.println("Number of moves left: " + movesLeft + "\n");
         }
-
+        
         player.setPoints(player.getPoints() + (int) totalBeamScore);
-        System.out.println("Your current score is " + player.getPoints());
-        System.out.println("Heading back to the main event...");
-
+        //System.out.println("Your current score is " + player.getPoints());
+        System.out.println("Heading back to the main event...\n");
+        
     }
 
 }
