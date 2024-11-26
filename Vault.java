@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Vault extends Room {
-      private Player player;
+    private Player player;
     private String roomDescription;
     private String instructions;
     private String instructions2;
