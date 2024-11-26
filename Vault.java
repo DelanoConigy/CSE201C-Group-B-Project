@@ -1,15 +1,14 @@
 /*
-* This class is for the Vault event, for right now it just show's you 
+* this class if for a event Vault, for right now it just show's you 
 *"You are entering the vault event"
 * @Author Adash Bhattarai
- */
+*/
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class Vault extends Room {
-
-    private Player player;
+      private Player player;
     private String roomDescription;
     private String instructions;
     private String instructions2;
@@ -19,7 +18,7 @@ public class Vault extends Room {
     private int totalPoints;
 
     // Array of possible flips for the event
-    private String[] flips = { "Easy Flip", "Medium Flip", "Hard Flip" };
+    private String[] flips = {"Easy Flip", "Medium Flip", "Hard Flip"};
 
     public Vault() {
         super(); // Inherited constructor to initialize the score for the room
@@ -34,16 +33,14 @@ public class Vault extends Room {
 
     /**
      * the dice roll for the flip.
-     *
      * @return A random number between 1 and 6
      */
     private int rollDice() {
-        return random.nextInt(6) + 1;
+        return random.nextInt(12) + 1;
     }
 
     /**
      * Perform a flip based on user selection and update points.
-     *
      * @param flipChoice The type of flip chosen (1, 2, or 3)
      */
     private void performFlip(int flipChoice) {
@@ -53,23 +50,23 @@ public class Vault extends Room {
         switch (flipChoice) {
             case 1:
                 requiredRoll = 3;
-                pointsEarned = 10;
+                pointsEarned = 5;
                 System.out.println("You chose the Easy Flip.");
                 break;
             case 2:
-                requiredRoll = 5;
-                pointsEarned = 20;
+                requiredRoll = 6;
+                pointsEarned =8;
                 System.out.println("You chose the Medium Flip.");
                 break;
             case 3:
-                requiredRoll = 6;
-                pointsEarned = 30;
+                requiredRoll = 9;
+                pointsEarned = 12;
                 System.out.println("You chose the Hard Flip.");
                 break;
             default:
                 System.out.println("Invalid choice, defaulting to Easy Flip.");
-                requiredRoll = 3;
-                pointsEarned = 10;
+                requiredRoll = 12;
+                pointsEarned = 5;
                 break;
         }
 
@@ -83,9 +80,12 @@ public class Vault extends Room {
             this.totalPoints += pointsEarned;
         } else {
             int halfPoints = pointsEarned / 2; // Earn half points if flip fails
-            System.out
-                    .println("Unfortunately, you didn't land the flip. You earned " + halfPoints + " points instead.");
+            System.out.println("Unfortunately, you didn't land the flip. You earned " + halfPoints + " points instead.");
             this.totalPoints += halfPoints;
+        }
+        
+        if(this.totalPoints > 25 ) {
+        	this.totalPoints = 25;
         }
 
         System.out.println("Your total points are now: " + this.totalPoints);
@@ -93,7 +93,6 @@ public class Vault extends Room {
 
     /**
      * Prints the instructions and handles user input for performing flips.
-     *
      * @param scan Scanner object to take player input
      */
     private void playGame(Scanner scan) {
@@ -122,15 +121,13 @@ public class Vault extends Room {
 
     /**
      * This is the main method for the Vault event, which runs the event.
-     *
      * @param player The player who is participating in the Vault event
      */
     @Override
     public void startRoom(Player player) {
         this.player = player;
 
-        // Display the welcome message
-        System.out.println("Welcome to the Vault Event!");
+    
         Scanner scan = new Scanner(System.in);
 
         // Game loop to handle player actions
