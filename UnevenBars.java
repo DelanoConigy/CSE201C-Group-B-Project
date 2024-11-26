@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Class to control the Uneven Bars event
  *
- * @author Delano Conigyy
+ * @author Delano Conigy
  */
 public class UnevenBars extends Room {
 
@@ -85,6 +85,11 @@ public class UnevenBars extends Room {
 
     }
 
+    /**
+     * Checks if there is any moves remaining for the user to perform.
+     * 
+     * @return true if there are moves left, false otherwise
+     */
     public boolean checkMoves() {
         if (this.moveCount >= this.maxMoveCount) {
             return false;
@@ -160,6 +165,10 @@ public class UnevenBars extends Room {
         System.out.println("Hung on the bar for 1 move, your grip is stronger but not feeling as confident!");
     }
 
+    /**
+     * Checks to see how many moves left until the end of the room. Prints a message
+     * for the user.
+     */
     private void movesLeft() {
         System.out.println("\nYou have " + (this.maxMoveCount - this.moveCount) + " moves left! You have performed "
                 + this.moveCount + " moves so far!\n");
