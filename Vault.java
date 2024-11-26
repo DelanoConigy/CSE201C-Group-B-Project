@@ -19,7 +19,7 @@ public class Vault extends Room {
     private int totalPoints;
 
     // Array of possible flips for the event
-    private String[] flips = {"Easy Flip", "Medium Flip", "Hard Flip"};
+    private String[] flips = { "Easy Flip", "Medium Flip", "Hard Flip" };
 
     public Vault() {
         super(); // Inherited constructor to initialize the score for the room
@@ -83,7 +83,8 @@ public class Vault extends Room {
             this.totalPoints += pointsEarned;
         } else {
             int halfPoints = pointsEarned / 2; // Earn half points if flip fails
-            System.out.println("Unfortunately, you didn't land the flip. You earned " + halfPoints + " points instead.");
+            System.out
+                    .println("Unfortunately, you didn't land the flip. You earned " + halfPoints + " points instead.");
             this.totalPoints += halfPoints;
         }
 

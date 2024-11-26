@@ -35,7 +35,7 @@ public class Floor extends Room {
     public void startRoom(Player player) {
         displayWelcome(player);
         while (movesLeft > 0) {
-            //Player display attributes
+            // Player display attributes
             Move selectedMove = selectMove();
             attemptMove(player, selectedMove);
             movesLeft--;

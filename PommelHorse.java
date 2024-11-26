@@ -26,33 +26,30 @@ public class PommelHorse extends Room {
             new Move("Left Swing", 2, "A simple left swing to warm up."),
             new Move("One-Hand Circle", 4, "A challenging one-hand circle move."),
             new Move("Scissor", 6, "A scissor move requiring strength and balance."),
-            new Move("Transition Move", 1, "A move that lets you switch positions.")
-    );
+            new Move("Transition Move", 1, "A move that lets you switch positions."));
     private final List<Move> middleMoves = Arrays.asList(
             new Move("Mushroom Spin", 2, "An easy spin on the mushroom."),
             new Move("Spindle", 5, "A hard spindle move requiring precision."),
             new Move("Russian Swing", 7, "A difficult Russian swing for advanced athletes."),
-            new Move("Transition Move", 1, "A move that lets you switch positions.")
-    );
+            new Move("Transition Move", 1, "A move that lets you switch positions."));
     private final List<Move> rightMoves = Arrays.asList(
             new Move("Right Circle", 2, "A simple right circle to stay balanced."),
             new Move("Flare", 5, "A hard flare move to impress the judges."),
             new Move("Reverse Circle", 7, "A reverse circle move with high difficulty."),
-            new Move("Transition Move", 1, "A move that lets you switch positions.")
-    );
+            new Move("Transition Move", 1, "A move that lets you switch positions."));
 
-    // Skill requirements for each move in terms of speed, strength, balance, and confidence
+    // Skill requirements for each move in terms of speed, strength, balance, and
+    // confidence
     private final Map<String, int[]> moveRequirements = Map.of(
-            "Left Swing", new int[]{2, 0, 0, 0},
-            "One-Hand Circle", new int[]{0, 4, 0, 0},
-            "Scissor", new int[]{0, 3, 5, 0},
-            "Mushroom Spin", new int[]{2, 0, 0, 0},
-            "Spindle", new int[]{0, 0, 4, 5},
-            "Russian Swing", new int[]{3, 3, 4, 6},
-            "Right Circle", new int[]{2, 0, 1, 0},
-            "Flare", new int[]{0, 4, 0, 5},
-            "Reverse Circle", new int[]{3, 4, 3, 6}
-    );
+            "Left Swing", new int[] { 2, 0, 0, 0 },
+            "One-Hand Circle", new int[] { 0, 4, 0, 0 },
+            "Scissor", new int[] { 0, 3, 5, 0 },
+            "Mushroom Spin", new int[] { 2, 0, 0, 0 },
+            "Spindle", new int[] { 0, 0, 4, 5 },
+            "Russian Swing", new int[] { 3, 3, 4, 6 },
+            "Right Circle", new int[] { 2, 0, 1, 0 },
+            "Flare", new int[] { 0, 4, 0, 5 },
+            "Reverse Circle", new int[] { 3, 4, 3, 6 });
 
     /**
      * Constructor for PommelHorse, initializes the scanner.
@@ -86,7 +83,8 @@ public class PommelHorse extends Room {
         } else {
             // Perform up to five individual moves
             for (int i = 1; i <= 5; i++) {
-                System.out.println("\nMove " + i + ": Choose a move from the list below, or type 'transition' to change positions:");
+                System.out.println("\nMove " + i
+                        + ": Choose a move from the list below, or type 'transition' to change positions:");
                 Move move = chooseMove();
 
                 System.out.println("You chose: " + move.getName());
@@ -172,12 +170,12 @@ public class PommelHorse extends Room {
      * Executes the selected move and checks if the player meets skill
      * requirements. If requirements are not met, a minigame is triggered.
      *
-     * @param move the selected Move object
+     * @param move   the selected Move object
      * @param player the Player object attempting the move
      */
     private void executeMove(Move move, Player player) {
         int confidenceChange;
-        int[] requirements = moveRequirements.getOrDefault(move.getName(), new int[]{0, 0, 0, 0});
+        int[] requirements = moveRequirements.getOrDefault(move.getName(), new int[] { 0, 0, 0, 0 });
 
         // Check if player's skills meet move requirements; trigger minigame if not
         if (player.getSpeed() < requirements[0]
@@ -256,7 +254,7 @@ public class PommelHorse extends Room {
      *
      * @param player the Player object participating in the minigame
      * @return true if the player reacts within the allowed time, false
-     * otherwise
+     *         otherwise
      */
     private boolean playReactionTimeMinigame(Player player) {
         System.out.println("Minigame: Type 'GO!' as fast as you can after the prompt.");
@@ -290,7 +288,8 @@ public class PommelHorse extends Room {
      * @param player the Player object performing the combo move
      */
     private void performComboMove(Player player) {
-        System.out.println("Combo moves selected! Performing a challenging sequence including The Busnari, The Magyar, and The Tong Fei.");
+        System.out.println(
+                "Combo moves selected! Performing a challenging sequence including The Busnari, The Magyar, and The Tong Fei.");
         boolean minigameResult = playRandomMinigame(player);
         if (minigameResult) {
             System.out.println("Combo success! Great job!");

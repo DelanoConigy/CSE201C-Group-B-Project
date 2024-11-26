@@ -1,6 +1,7 @@
 
 /**
- * An abstract class to provide a basis for operations and attributes that should be in between each Room.
+ * An abstract class to provide a basis for operations and attributes that
+ * should be in between each Room.
  *
  * @author Delano Conigy, Dakota Oudeman, etc
  */
@@ -29,12 +30,16 @@ public abstract class Room {
     }
 
     /**
-     * Sets the score for the room.
+     * Sets the score for the room. The max a score can get for each room is 50.
      *
      * @param s score
      */
     public void setScore(double s) {
-        score = s;
+        if (s > 50) {
+            score = 50;
+            return;
+        }
+        this.score = s;
     }
 
     /**

@@ -10,19 +10,19 @@ public class Rings extends Room {
     private int stamina;
     private Move[] moves;
     private String rules = "First, select a move to perform. Then, choose how long you want \n"
-    		+ "to hold it. The longer you hold, the more points you'll get! \n"
-    		+ "Watch your stamina, though; the event is over once you run out. Also, \n"
-    		+ "the chance of failing a move increases with every second you hold.\n"
-    		+ "Though if your confidence is high, that chance is lowered!";
+            + "to hold it. The longer you hold, the more points you'll get! \n"
+            + "Watch your stamina, though; the event is over once you run out. Also, \n"
+            + "the chance of failing a move increases with every second you hold.\n"
+            + "Though if your confidence is high, that chance is lowered!";
 
     /**
      * Constructor method for new Rings room.
      * totalRingScore starts at 0, and stamina 100.
      */
     public Rings() {
-    	totalRingScore = 0;
-    	stamina = 100;
-    	moves = new Move[]{
+        totalRingScore = 0;
+        stamina = 100;
+        moves = new Move[] {
                 new Move("Back Lever", 70, "A challenging static hold parallel to the ground."),
                 new Move("Iron Cross", 90, "An extremely challenging static hold in a T-pose position."),
                 new Move("L-sit", 50, "A core-strength move with your legs straight forward."),
@@ -31,21 +31,22 @@ public class Rings extends Room {
                 new Move("Muscle-Up", 60, "A combination of a pull-up and a dip in one fluid motion."),
                 new Move("Human Flag", 90, "An advanced bodyweight hold, resembling a flag on a pole."),
                 new Move("Maltese", 95, "An extremely challenging straight-arm hold on the rings.")
-    	};
+        };
     }
 
     /**
      * Method to choose a move from the private
      * String[] moves
+     * 
      * @return
      */
     public Move chooseMove() {
-    	// print moves
-    	System.out.println("Pick a move! The lower the difficulty, the less stamina it'll use.");
-    	System.out.println("Enter its corresponding number:");
-    	for (int i = 0; i < moves.length; i++) {
-            System.out.println((i + 1) + ". " + moves[i].getName() + " (Difficulty: " + 
-            		moves[i].getDifficulty() + ") [Description: " + moves[i].getDescription() + "]");
+        // print moves
+        System.out.println("Pick a move! The lower the difficulty, the less stamina it'll use.");
+        System.out.println("Enter its corresponding number:");
+        for (int i = 0; i < moves.length; i++) {
+            System.out.println((i + 1) + ". " + moves[i].getName() + " (Difficulty: " +
+                    moves[i].getDifficulty() + ") [Description: " + moves[i].getDescription() + "]");
         }
 
         Scanner s = new Scanner(System.in);
@@ -71,14 +72,16 @@ public class Rings extends Room {
 
     /**
      * Method to perform the player-selected move.
-     * @param move The move to perform.
+     * 
+     * @param move   The move to perform.
      * @param player The player performing the move.
      */
     public void performMove(Move move, Player player) {
         Scanner s = new Scanner(System.in);
 
         // Calculate the stamina cost for 1 second of holding the move
-        int staminaCostPerSecond = Math.max(1, move.getDifficulty() / 4 - player.getStrength() / 10);  // Minimum cost per second is 1
+        int staminaCostPerSecond = Math.max(1, move.getDifficulty() / 4 - player.getStrength() / 10); // Minimum cost
+                                                                                                      // per second is 1
         int maxHoldTime = stamina / staminaCostPerSecond; // Calculate max hold time based on current stamina
 
         // Ensure the player can hold the move for at least 1 second
@@ -88,20 +91,20 @@ public class Rings extends Room {
             maxHoldTime = 1; // Force max hold time to 1 second
         }
 
-        System.out.println("You can hold the " + move.getName() + " for a maximum of " + 
-        		maxHoldTime + " seconds based on your current stamina.");
-        
+        System.out.println("You can hold the " + move.getName() + " for a maximum of " +
+                maxHoldTime + " seconds based on your current stamina.");
+
         // Ask the user how long they want to hold the move
         System.out.println("How many seconds do you want to hold the " + move.getName() + "?");
         int holdTime = 0;
 
         while (holdTime <= 0 || holdTime > maxHoldTime) {
             try {
-            	if (maxHoldTime > 1) {
-            		System.out.print("Enter hold time in seconds (1-" + maxHoldTime + "): ");
-            	} else {
-            		System.out.println("Enter hold time in seconds (1)");
-            	}
+                if (maxHoldTime > 1) {
+                    System.out.print("Enter hold time in seconds (1-" + maxHoldTime + "): ");
+                } else {
+                    System.out.println("Enter hold time in seconds (1)");
+                }
                 holdTime = s.nextInt();
                 if (holdTime <= 0 || holdTime > maxHoldTime) {
                     System.out.println("Please enter a number between 1 and " + maxHoldTime + ".");
@@ -116,10 +119,10 @@ public class Rings extends Room {
         int staminaCost = staminaCostPerSecond * holdTime;
 
         // Determine chance of failure
-        double baseFailureChance = Math.min(holdTime * 0.25, 0.9); 
-        double confidenceModifier = 1 - (Math.min(player.getConfidence(), 10) / 200.0); 
+        double baseFailureChance = Math.min(holdTime * 0.25, 0.9);
+        double confidenceModifier = 1 - (Math.min(player.getConfidence(), 10) / 200.0);
         double failureChance = baseFailureChance * confidenceModifier;
-        
+
         boolean success = Math.random() > failureChance;
 
         // Update stamina and score
@@ -131,16 +134,19 @@ public class Rings extends Room {
             System.out.println("\nSuccess! You held the " + move.getName() + " for " + holdTime + " seconds.");
             System.out.println("You gained " + pointsGained + " points! Total score: " + totalRingScore + "\n");
             if (player.getConfidence() < 10) {
-            	player.addConfidence(1); 
-            	System.out.println("Your confidence has increased! Current confidence: " + player.getConfidence() + "\n");
+                player.addConfidence(1);
+                System.out
+                        .println("Your confidence has increased! Current confidence: " + player.getConfidence() + "\n");
             } else {
-            	System.out.println("Your confidence was too high to increase! Current confidence: " + player.getConfidence() + "\n");
+                System.out.println("Your confidence was too high to increase! Current confidence: "
+                        + player.getConfidence() + "\n");
             }
-            
+
         } else {
-            System.out.println("\nOh no! You failed to hold the " + move.getName() + " after " + holdTime + " seconds.");
+            System.out
+                    .println("\nOh no! You failed to hold the " + move.getName() + " after " + holdTime + " seconds.");
             System.out.println("No points gained this time.\n");
-            player.addConfidence(-3); 
+            player.addConfidence(-3);
             System.out.println("Your confidence has decreased! Current confidence: " + player.getConfidence() + "\n");
         }
 
@@ -163,7 +169,7 @@ public class Rings extends Room {
             Move chosenMove = chooseMove();
             performMove(chosenMove, player);
         }
-        
+
         // Convert Rings score to the overall score (max 25 points)
         int convertedScore = Math.min(25, totalRingScore / 15); // Adjust conversion formula if needed
         player.setPoints(convertedScore); // Update player's overall score

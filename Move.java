@@ -1,6 +1,7 @@
 
 /**
- * A class to provide a basis for operations and attributes for each Move which will be utilized by multiple rooms.
+ * A class to provide a basis for operations and attributes for each Move which
+ * will be utilized by multiple rooms.
  *
  * @author Delano Conigy, Dakota Oudeman, etc
  */
@@ -14,8 +15,8 @@ public class Move {
     /**
      * Constructs a Move given the name, difficulty, and description.
      *
-     * @param name of the move.
-     * @param difficulty of the move.
+     * @param name        of the move.
+     * @param difficulty  of the move.
      * @param description of the move.
      */
     public Move(String name, int difficulty, String description) {
@@ -59,7 +60,8 @@ public class Move {
      */
     public String toString(Move move) {
         String result = "";
-        result += "Name: " + move.getName() + " Difficulty: " + move.getDifficulty() + " Description: " + move.getDescription();
+        result += "Name: " + move.getName() + " Difficulty: " + move.getDifficulty() + " Description: "
+                + move.getDescription();
 
         return result;
     }

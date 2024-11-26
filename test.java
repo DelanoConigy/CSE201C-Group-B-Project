@@ -19,13 +19,14 @@ public class test {
         System.out.println("Please choose a gender: Male, Female, or Other");
 
         String gender = "";
-        boolean validGender = false;  // Renamed variable for valid gender input
+        boolean validGender = false; // Renamed variable for valid gender input
 
         // Loop until a valid gender input is provided
         while (!validGender) {
             gender = in.next();
-            in.nextLine();  // Clear the buffer
-            if (gender.equalsIgnoreCase("Male") || gender.equalsIgnoreCase("Female") || gender.equalsIgnoreCase("Other")) {
+            in.nextLine(); // Clear the buffer
+            if (gender.equalsIgnoreCase("Male") || gender.equalsIgnoreCase("Female")
+                    || gender.equalsIgnoreCase("Other")) {
                 validGender = true; // Exit loop when a valid input is entered
             } else {
                 System.out.println("Invalid input. Please choose from: Male, Female, or Other.");
@@ -39,7 +40,8 @@ public class test {
         System.out.println("Your gender is " + gender + ".\n");
 
         // Start customizing skill levels
-        System.out.println("Now it's time to establish your skill level. How confident are you in your abilities? Choose a number 1-10.");
+        System.out.println(
+                "Now it's time to establish your skill level. How confident are you in your abilities? Choose a number 1-10.");
 
         int confidence = 0;
         boolean validConfidence = false;
@@ -68,7 +70,8 @@ public class test {
 
         // Get strength value
         while (!validInput) {
-            System.out.println("\nYou have " + skillPoints + " skill points left. How strong are you? Choose a number 0 - 10");
+            System.out.println(
+                    "\nYou have " + skillPoints + " skill points left. How strong are you? Choose a number 0 - 10");
             try {
                 int tempSkillValue = Integer.parseInt(in.next());
                 if (tempSkillValue >= 0 && tempSkillValue <= 10) {
@@ -76,7 +79,8 @@ public class test {
                     skillPoints -= tempSkillValue;
                     validInput = true;
                 } else {
-                    System.out.println("Invalid input! Strength value cannot exceed 10. Please choose a number between 0 and 10.");
+                    System.out.println(
+                            "Invalid input! Strength value cannot exceed 10. Please choose a number between 0 and 10.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a valid number between 0 and 10 for strength.");
@@ -86,27 +90,31 @@ public class test {
 
         // Get speed value
         while (!validInput) {
-            System.out.println("\nYou have " + skillPoints + " skill points left. How fast are you? Choose a number 0 - 10");
+            System.out.println(
+                    "\nYou have " + skillPoints + " skill points left. How fast are you? Choose a number 0 - 10");
             try {
                 int tempSkillValue = Integer.parseInt(in.next());
                 if (tempSkillValue >= 0 && tempSkillValue <= skillPoints && tempSkillValue <= 10) {
                     speed = tempSkillValue;
                     skillPoints -= tempSkillValue;
                     validInput = true;
-                } else if(tempSkillValue > 10){
-                    System.out.println("Invalid input! Speed value cannot exceed 10. Please choose a number between 0 and 10.");   
-                }else {
+                } else if (tempSkillValue > 10) {
+                    System.out.println(
+                            "Invalid input! Speed value cannot exceed 10. Please choose a number between 0 and 10.");
+                } else {
                     System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input! Please enter a valid number between 0 and " + skillPoints + " for speed.");
+                System.out.println(
+                        "Invalid input! Please enter a valid number between 0 and " + skillPoints + " for speed.");
             }
         }
         validInput = false;
 
         // Get balance value
         while (!validInput) {
-            System.out.println("\nYou have " + skillPoints + " skill points left. How much balance do you have? Choose a number 0 - 10");
+            System.out.println("\nYou have " + skillPoints
+                    + " skill points left. How much balance do you have? Choose a number 0 - 10");
             try {
                 int tempSkillValue = Integer.parseInt(in.next());
                 if (tempSkillValue >= 0 && tempSkillValue <= skillPoints && tempSkillValue <= 10) {
@@ -116,19 +124,23 @@ public class test {
                 } else {
                     if (tempSkillValue > 10) {
                         System.out.println("Invalid input! The maximum amount of skill points to one category is 10.");
-                    } else if(tempSkillValue > 10) {
-                        System.out.println("Invalid input! Balance value cannot exceed 10. Please choose a number between 0 and 10."); 
+                    } else if (tempSkillValue > 10) {
+                        System.out.println(
+                                "Invalid input! Balance value cannot exceed 10. Please choose a number between 0 and 10.");
                     } else {
-                        System.out.println("Invalid input! You can only use " + skillPoints + " skill points. Try again.");
+                        System.out.println(
+                                "Invalid input! You can only use " + skillPoints + " skill points. Try again.");
                     }
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input! Please enter a valid number between 0 and " + skillPoints + " for balance.");
+                System.out.println(
+                        "Invalid input! Please enter a valid number between 0 and " + skillPoints + " for balance.");
             }
         }
 
-        System.out.println("\nYour skills are as follows: Strength - " + strength + ", Speed - " + speed + ". Balance - "
-                + balance + ", Confidence: " + confidence);
+        System.out
+                .println("\nYour skills are as follows: Strength - " + strength + ", Speed - " + speed + ". Balance - "
+                        + balance + ", Confidence: " + confidence);
 
         // Create Player and Rooms
         Player p = new Player(gender, confidence, strength, speed, balance);
@@ -151,25 +163,26 @@ public class test {
         System.out.print("\nNow it's time to compete!\n");
         while (rooms.size() > 0) {
             System.out.println("Your current score is: " + p.getPoints());
-            if(p.getPoints() <= 50) {
-               System.out.println("You are " + (50 - p.getPoints()) + " points away from winning Bronze!"); 
-            } else if(p.getPoints() <= 100) {
-                System.out.println("You are " + (100 - p.getPoints()) + " points away from winning Silver!"); 
-            } else if(p.getPoints() <= 150) {
-                System.out.println("You are " + (150 - p.getPoints()) + " points away from winning Gold!"); 
+            if (p.getPoints() <= 50) {
+                System.out.println("You are " + (50 - p.getPoints()) + " points away from winning Bronze!");
+            } else if (p.getPoints() <= 100) {
+                System.out.println("You are " + (100 - p.getPoints()) + " points away from winning Silver!");
+            } else if (p.getPoints() <= 150) {
+                System.out.println("You are " + (150 - p.getPoints()) + " points away from winning Gold!");
             }
-            //System.out.println("Your skills are as follows: Strength - " + strength + ", Speed - " + speed + ". Balance - "
-                    //+ balance + ", Confidence: " + confidence);
+            // System.out.println("Your skills are as follows: Strength - " + strength + ",
+            // Speed - " + speed + ". Balance - "
+            // + balance + ", Confidence: " + confidence);
             System.out.println("\nPick the event you want to compete in: ");
             for (int i = 0; i < rooms.size() - 1; i++) {
                 System.out.print(rooms.get(i) + ", ");
             }
             System.out.println(rooms.get(rooms.size() - 1));
             String room = in.nextLine();
-            
+
             // Make the comparison case-insensitive using equalsIgnoreCase
             boolean validRoom = false;
-            
+
             for (String validRoomName : rooms) {
                 if (room.equalsIgnoreCase(validRoomName)) {
                     validRoom = true;
@@ -182,7 +195,7 @@ public class test {
                 System.out.println("\tStart of " + room);
                 System.out.println("======================================");
             }
-            
+
             // Handle the room selection with case-insensitive comparisons
             if (room.equalsIgnoreCase("Pommel")) {
                 pommelRoom.startRoom(p);
@@ -206,21 +219,19 @@ public class test {
                 System.out.println("Please enter a valid input");
             }
         }
-            
+
         System.out.println("Congratulations! You have competed in all the events.");
 
         // Need to add the medal award ceremony here
         System.out.println("Your total score is: " + p.getPoints());
-        
-        if(p.getPoints() <= 150 && p.getPoints() > 100) {
+
+        if (p.getPoints() <= 150 && p.getPoints() > 100) {
             System.out.println("Congratulations! You have earned a gold medal for " + country + "!");
-        } else if(p.getPoints() <= 100 && p.getPoints() > 50) {
+        } else if (p.getPoints() <= 100 && p.getPoints() > 50) {
             System.out.println("Congratulations! You have earned a silver medal for " + country + "!");
         } else {
             System.out.println("Congratulations! You have earned a bronze medal for " + country + "!");
         }
-        
-        
-        }
+
     }
 }
