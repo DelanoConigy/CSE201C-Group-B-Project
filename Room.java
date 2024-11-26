@@ -35,8 +35,8 @@ public abstract class Room {
      * @param s score
      */
     public void setScore(double s) {
-        if (s > 50) {
-            score = 50;
+        if (s > 25) {
+            score = 25;
             return;
         }
         this.score = s;

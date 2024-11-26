@@ -58,7 +58,7 @@ public class UnevenBars extends Room {
         intermediateCombo.add(moves.get(5)); // Pak
 
         advancedCombo.add(moves.get(11)); // Maloney
-        advancedCombo.add(moves.get(12)); // Pak
+        advancedCombo.add(moves.get(12)); // Pak 2
         advancedCombo.add(moves.get(6)); // Gienger
         advancedCombo.add(moves.get(7)); // Full Twist
     }
@@ -81,7 +81,7 @@ public class UnevenBars extends Room {
         moves.add(new Move("Turn", 20, "Spin on one bar."));
         moves.add(new Move("Circle", 30, "Swing in a straddle."));
         moves.add(new Move("Maloney", 35, "Toe-on and fly to high bar."));
-        moves.add(new Move("Pak", 50, "Pak with a toe-on to high bar."));
+        moves.add(new Move("Pak 2", 50, "Pak with a toe-on to high bar."));
 
     }
 
@@ -119,7 +119,7 @@ public class UnevenBars extends Room {
         if ((this.player.getStrength() + (this.player.getConfidence() / 2)
                 + random.nextInt(this.gripStrength, 21)
                 + this.gripStrength) >= move.getDifficulty()) {
-            this.setScore((move.getDifficulty() / 4) + this.getScore());
+            this.setScore((move.getDifficulty() / 7) + this.getScore());
             this.player.setConfidence(player.getConfidence() + 1);
             System.out.println(successMsg);
             return true;
