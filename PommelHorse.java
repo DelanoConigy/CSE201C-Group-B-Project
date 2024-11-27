@@ -60,51 +60,66 @@ public class PommelHorse extends Room {
     @Override
     public void startRoom(Player player) {
         System.out.println("Welcome to the Pommel Horse event!");
-        choosePosition();
-        System.out.println("Your starting confidence is: " + player.getConfidence());
 
-        int choiceType = -1;
-        while (choiceType != 1 && choiceType != 2) {
-        try {
-            System.out.println("Do you want to perform individual moves or a combo move? (type '1' for individual, '2' for combo):");
-            choiceType = Integer.parseInt(scanner.nextLine());
-            if (choiceType != 1 && choiceType != 2) {
-                System.out.println("Invalid choice. Please enter 1 for individual or 2 for combo.");
+        while (true) { // Loop to allow going back
+            System.out.println("Choose your starting position on the pommel horse:");
+            choosePosition();
+            System.out.println("Your starting confidence is: " + player.getConfidence());
+
+            int choiceType = -1;
+            while (choiceType != 1 && choiceType != 2) {
+                try {
+                    System.out.println("Do you want to perform:");
+                    System.out.println("1. Individual moves");
+                    System.out.println("2. A combo move");
+                    choiceType = Integer.parseInt(scanner.nextLine());
+                    if (choiceType < 1 || choiceType > 2) {
+                        System.out.println("Invalid choice. Please enter 1 or 2.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a valid number (1 or 2).");
+                }
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter 1 or 2.");
-        }
-    }
 
-    if (choiceType == 2) {
-        performComboMove(player);
-    } else {
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("\nMove " + i + ": Choose a move from the list below:");
-            Move move = chooseMove();
-            System.out.println("You chose: " + move.getName());
-            System.out.println("Description: " + move.getDescription());
-            executeMove(move, player);
+            if (choiceType == 2) {
+                performComboMove(player); // No "Go Back" from here
+                break; // Exit the loop after performing a combo
+            } else {
+                for (int i = 1; i <= 3; i++) { // Reduced to 3 moves
+                    System.out.println("\nMove " + i + ": Choose a move from the list below:");
+                    Move move = chooseMove();
+                    if (move.getName().equalsIgnoreCase("Transition Move")) {
+                        choosePosition(); // Allow position change
+                        i--; // Do not count the transition move
+                        continue;
+                    }
+                    System.out.println("You chose: " + move.getName());
+                    System.out.println("Description: " + move.getDescription());
+                    executeMove(move, player);
 
-            if (player.getConfidence() <= 0) {
-                System.out.println("Oh no! You've lost confidence and fallen off the pommel horse.");
-                break;
+                    if (player.getConfidence() <= 0) {
+                        System.out.println("Oh no! You've lost confidence and fallen off the pommel horse.");
+                        break;
+                    }
+                }
+                break; // Exit the loop after performing individual moves
             }
         }
-    }
 
-    int finalConfidence = player.getConfidence();
-    double scaledScore = (finalConfidence / 10.0) * 25;
-    setScore(scaledScore);
-    System.out.println("You finished the Pommel Horse event with a score of: " + Math.min(getScore(), 25));
-}
+        int finalConfidence = player.getConfidence();
+        double scaledScore = (finalConfidence / 10.0) * 25;
+        setScore(scaledScore);
+
+        System.out.println("You finished the Pommel Horse event with a score of: " + Math.min(getScore(), 25));
+        System.out.println("Your total points: " + player.getPoints());
+    }
 
     /**
      * Prompts the player to choose a position on the pommel horse.
      * Options include Left, Middle, and Right.
      */
     private void choosePosition() {
-        System.out.println("Choose your position on the pommel horse:");
+        System.out.println("Choose your position on the pommel horse(1, 2, or 3):");
         System.out.println("1. Left");
         System.out.println("2. Middle");
         System.out.println("3. Right");
@@ -143,17 +158,20 @@ public class PommelHorse extends Room {
         List<Move> moves;
         switch (position) {
             case "left":
-                moves = leftMoves;
+                moves = new ArrayList<>(leftMoves);
                 break;
             case "middle":
-                moves = middleMoves;
+                moves = new ArrayList<>(middleMoves);
                 break;
             case "right":
-                moves = rightMoves;
+                moves = new ArrayList<>(rightMoves);
                 break;
             default:
                 return null;
         }
+    
+        // Add Transition Move to allow free position changes
+        moves.add(new Move("Transition Move", 0, "Allows you to change your position without scoring or affecting confidence."));
     
         System.out.println("Available moves:");
         for (int i = 0; i < moves.size(); i++) {
@@ -166,10 +184,10 @@ public class PommelHorse extends Room {
                 System.out.print("Choose a move by number: ");
                 choice = Integer.parseInt(scanner.nextLine());
                 if (choice < 1 || choice > moves.size()) {
-                    System.out.println("Invalid choice. Please select a valid move.");
+                    System.out.println("Invalid choice. Please select a valid option.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number corresponding to a move.");
+                System.out.println("Invalid input. Please enter a number between 1 and " + moves.size() + ".");
             }
         }
     
@@ -185,23 +203,39 @@ public class PommelHorse extends Room {
      */
     private void executeMove(Move move, Player player) {
         int confidenceChange;
+        int pointsAwarded;
         int[] requirements = moveRequirements.getOrDefault(move.getName(), new int[]{0, 0, 0, 0});
-
+    
         if (player.getSpeed() < requirements[0] || 
             player.getStrength() < requirements[1] || 
             player.getBalance() < requirements[2] || 
             player.getConfidence() < requirements[3]) {
+            System.out.println("This move is challenging based on your current skills and requires a minigame.");
             boolean minigameResult = playRandomMinigame(player);
             if (minigameResult) {
+                System.out.println("Congratulations! You succeeded in the minigame.");
                 confidenceChange = 3;
+                pointsAwarded = move.getDifficulty() * 2;
             } else {
+                System.out.println("You lost the minigame. Applying base reward.");
                 confidenceChange = 1;
+                pointsAwarded = move.getDifficulty();
             }
         } else {
+            System.out.println("You perform the move (" + move.getName() + ") successfully without needing a minigame.");
             confidenceChange = 2;
+            pointsAwarded = move.getDifficulty();
         }
-
+    
+        // Ensure the total points do not exceed 25
+        int currentPoints = player.getPoints();
+        if (currentPoints + pointsAwarded > 25) {
+            pointsAwarded = 25 - currentPoints;
+        }
+    
         player.addConfidence(confidenceChange);
+        player.setPoints(currentPoints + pointsAwarded);
+        System.out.println("You earned " + pointsAwarded + " points for this move.");
     }
 
     /**
@@ -270,12 +304,46 @@ public class PommelHorse extends Room {
      * 
      * @param player the Player object performing the combo move
      */
-    private void performComboMove(Player player) {
-        boolean minigameResult = playRandomMinigame(player);
-        if (minigameResult) {
-            player.addConfidence(4);
-        } else {
-            player.addConfidence(2);
+    private boolean performComboMove(Player player) {
+        List<String> combos = Arrays.asList(
+            "1. The Busnari, The Magyar, and The Tong Fei",
+            "2. The Wu, The Li Ning, and The Triple Russian",
+            "3. The Flair, The Reverse Circle, and The Russian Swing"
+        );
+    
+        System.out.println("Available combo moves:");
+        for (String combo : combos) {
+            System.out.println(combo);
         }
+        System.out.println((combos.size() + 1) + ". Go Back");
+    
+        int comboChoice = -1;
+        while (comboChoice < 1 || comboChoice > combos.size() + 1) {
+            try {
+                System.out.print("Choose a combo move by number: ");
+                comboChoice = Integer.parseInt(scanner.nextLine());
+                if (comboChoice < 1 || comboChoice > combos.size() + 1) {
+                    System.out.println("Invalid choice. Please choose a valid combo by number.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number between 1 and " + (combos.size() + 1) + ".");
+            }
+        }
+    
+        if (comboChoice == combos.size() + 1) {
+            System.out.println("Returning to main menu...");
+            return false;
+        }
+    
+        System.out.println("You chose combo " + comboChoice + ": " + combos.get(comboChoice - 1));
+        boolean minigameResult = playRandomMinigame(player);
+    
+        if (minigameResult) {
+            System.out.println("Combo success! You've completed the Pommel Horse event!");
+            player.setPoints(player.getPoints() + 25);
+        } else {
+            System.out.println("Combo failed. No points awarded.");
+        }
+        return true;
     }
 }
