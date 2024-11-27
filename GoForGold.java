@@ -5,7 +5,7 @@ import java.util.*;
  *
  * @author Delano Conigy, Rayne Elling, etc
  */
-public class test {
+public class GoForGold {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -232,6 +232,5 @@ public class test {
         } else {
             System.out.println("Congratulations! You have earned a bronze medal for " + country + "!");
         }
-
     }
 }
