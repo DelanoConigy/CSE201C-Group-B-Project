@@ -62,31 +62,42 @@ public class PommelHorse extends Room {
         System.out.println("Welcome to the Pommel Horse event!");
         choosePosition();
         System.out.println("Your starting confidence is: " + player.getConfidence());
-        System.out.println("Do you want to perform individual moves or a combo move? (type '1' for individual, '2' for combo):");
-        int choiceType = Integer.parseInt(scanner.nextLine());
 
-        if (choiceType == 2) {
-            performComboMove(player);
-        } else {
-            for (int i = 1; i <= 5; i++) {
-                System.out.println("\nMove " + i + ": Choose a move from the list below:");
-                Move move = chooseMove();
-                System.out.println("You chose: " + move.getName());
-                System.out.println("Description: " + move.getDescription());
-                executeMove(move, player);
+        int choiceType = -1;
+        while (choiceType != 1 && choiceType != 2) {
+        try {
+            System.out.println("Do you want to perform individual moves or a combo move? (type '1' for individual, '2' for combo):");
+            choiceType = Integer.parseInt(scanner.nextLine());
+            if (choiceType != 1 && choiceType != 2) {
+                System.out.println("Invalid choice. Please enter 1 for individual or 2 for combo.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter 1 or 2.");
+        }
+    }
 
-                if (player.getConfidence() <= 0) {
-                    System.out.println("Oh no! You've lost confidence and fallen off the pommel horse.");
-                    break;
-                }
+    if (choiceType == 2) {
+        performComboMove(player);
+    } else {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("\nMove " + i + ": Choose a move from the list below:");
+            Move move = chooseMove();
+            System.out.println("You chose: " + move.getName());
+            System.out.println("Description: " + move.getDescription());
+            executeMove(move, player);
+
+            if (player.getConfidence() <= 0) {
+                System.out.println("Oh no! You've lost confidence and fallen off the pommel horse.");
+                break;
             }
         }
-
-        int finalConfidence = player.getConfidence();
-        double scaledScore = (finalConfidence / 10.0) * 25;
-        setScore(scaledScore);
-        System.out.println("You finished the Pommel Horse event with a score of: " + Math.min(getScore(), 25));
     }
+
+    int finalConfidence = player.getConfidence();
+    double scaledScore = (finalConfidence / 10.0) * 25;
+    setScore(scaledScore);
+    System.out.println("You finished the Pommel Horse event with a score of: " + Math.min(getScore(), 25));
+}
 
     /**
      * Prompts the player to choose a position on the pommel horse.
@@ -97,13 +108,20 @@ public class PommelHorse extends Room {
         System.out.println("1. Left");
         System.out.println("2. Middle");
         System.out.println("3. Right");
-
-        int choice = Integer.parseInt(scanner.nextLine());
+    
+        int choice = -1;
         while (choice < 1 || choice > 3) {
-            System.out.println("Invalid choice. Please choose a valid position:");
-            choice = Integer.parseInt(scanner.nextLine());
+            try {
+                System.out.print("Enter your choice: ");
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice < 1 || choice > 3) {
+                    System.out.println("Invalid choice. Please choose a valid position.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number (1, 2, or 3).");
+            }
         }
-
+    
         if (choice == 1) {
             position = "left";
         } else if (choice == 2) {
@@ -111,7 +129,7 @@ public class PommelHorse extends Room {
         } else if (choice == 3) {
             position = "right";
         }
-
+    
         System.out.println("You are now at the " + position + " position.");
     }
 
@@ -136,21 +154,26 @@ public class PommelHorse extends Room {
             default:
                 return null;
         }
-
+    
         System.out.println("Available moves:");
         for (int i = 0; i < moves.size(); i++) {
             System.out.println((i + 1) + ". " + moves.get(i).getName() + " (Difficulty: " + moves.get(i).getDifficulty() + ")");
         }
-
-        System.out.println("Choose a move by number:");
-        int choice = Integer.parseInt(scanner.nextLine()) - 1;
-
-        while (choice < 0 || choice >= moves.size()) {
-            System.out.println("Invalid choice. Please select a valid move:");
-            choice = Integer.parseInt(scanner.nextLine()) - 1;
+    
+        int choice = -1;
+        while (choice < 1 || choice > moves.size()) {
+            try {
+                System.out.print("Choose a move by number: ");
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice < 1 || choice > moves.size()) {
+                    System.out.println("Invalid choice. Please select a valid move.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number corresponding to a move.");
+            }
         }
-
-        return moves.get(choice);
+    
+        return moves.get(choice - 1);
     }
 
     /**
