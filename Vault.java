@@ -108,6 +108,7 @@ public class Vault extends Room {
             case "2":
             case "3":
                 performFlip(Integer.parseInt(playerChoice)); // Perform the flip based on user's choice
+                this.flipCount++; // Increment flip count after each action
                 break;
             case "Q":
                 System.out.println("You chose to quit the Vault event.");
@@ -133,7 +134,6 @@ public class Vault extends Room {
         // Game loop to handle player actions
         while (this.flipCount < this.maxFlipCount) {
             playGame(scan);
-            this.flipCount++; // Increment flip count after each action
         }
 
         // Update the player's points after the event
