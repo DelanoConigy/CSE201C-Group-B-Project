@@ -1,6 +1,7 @@
 /*
-* this class if for a event Vault, for right now it just show's you 
-*"You are entering the vault event"
+* Purpose: this calls reperesent the vault event in a game. Players can perform flips of varying difficylt,
+earning points based on their performance. The class handles event instrucations, scoring, and logic
+for flip success or failure using a dice role. 
 * @Author Adash Bhattarai
 */
 
@@ -19,7 +20,16 @@ public class Vault extends Room {
 
     // Array of possible flips for the event
     private String[] flips = {"Easy Flip", "Medium Flip", "Hard Flip"};
-
+    /**
+     * Constructor for the Vault class.
+     * Initializes the room with a description, instructions for the player,
+     * and settings for the number of flips, maximum points, and random number generation.
+     * Key Features:
+     * Room Description: Provides an overview of the Vault event.
+     * Instructions: Explains how to perform flips and the required dice rolls.
+     * Game Settings: Limits the number of flips and initializes total points to 0.
+     * Random Dice Rolls: Generates random values to determine success for flips.
+     */
     public Vault() {
         super(); // Inherited constructor to initialize the score for the room
         this.roomDescription = "Welcome to the Vault event! You will attempt a series of flips, each with varying difficulty levels.";
