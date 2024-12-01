@@ -20,7 +20,7 @@ public class BalanceBeam extends Room {
 
         /**
          * Constructs the BalanceBeam room, establishing messages, totalBeamScore,
-         * and movesLeft
+         * and movesLeft.
          */
         public BalanceBeam() {
                 roomDescription = "Welcome to the balance beam event! Throughout this event you will be provided with choices of which move to make. "
@@ -107,8 +107,8 @@ public class BalanceBeam extends Room {
         /**
          * Performs the given skill.
          * 
-         * @param index of skill/Move
-         * @return true if move completed successfully, false otherwise
+         * @param index of skill/Move.
+         * @return True if move completed successfully, false otherwise.
          */
         public boolean performSkill(int skillNum, Player p) {
                 int difficulty = skills[skillNum].getDifficulty();
@@ -117,13 +117,10 @@ public class BalanceBeam extends Room {
                 int total = calculatePerformance(difficulty, skillLevel, confidence);
 
                 if (difficulty == 3) {
-                        // System.out.println(total + " >=? " + 25);
                         return total >= 25;
                 } else if (difficulty == 2) {
-                        // System.out.println(total + " >=? " + 20);
                         return total >= 20;
                 } else {
-                        // System.out.println(total + " >=? " + 15);
                         return total >= 15;
                 }
 
@@ -132,6 +129,8 @@ public class BalanceBeam extends Room {
         /**
          * Calculates the performance of the athlete for a given skill.
          * 
+         * @param difficulty of the skill chosen.
+         * @param skill Level of the skill chosen.
          * @return the score calculated for the skill.
          */
         public int calculatePerformance(int difficulty, int skillLevel,
@@ -176,6 +175,11 @@ public class BalanceBeam extends Room {
                 messages[8] = "It's time to dismount. Choose your final skill.";
         }
 
+        /**
+         * Updates the score for the room.
+         * 
+         * @param difficulty of skill.
+         */
         private void updateScore(int difficulty) {
                 if (difficulty == 3) {
                         totalBeamScore += 3.6;
@@ -200,6 +204,7 @@ public class BalanceBeam extends Room {
          * choosing a skill.
          * 
          * @param Scanner to take input.
+         * @param Player who is competing in the event.
          */
         private void displayOptions(Scanner in, Player p) {
                 boolean valid = true;
@@ -253,7 +258,7 @@ public class BalanceBeam extends Room {
                                 System.out.println("Please enter a valid input");
                         }
                 }
-                // performSkill(skillNum, p);
+
                 if (performSkill(skillNum, p)) {
                         System.out.println("\nSuccess!");
                         if (!(p.getConfidence() >= 10)) {
@@ -288,16 +293,12 @@ public class BalanceBeam extends Room {
                 loadSkills();
                 showMessage(0);
                 showMessage(1);
-                // System.out.println("Please choose a skill to complete: cartwheel or
-                // back handspring");
                 Scanner in = new Scanner(System.in);
                 while (movesLeft > -1) {
                         displayOptions(in, player);
-                        // System.out.println("Number of moves left: " + movesLeft + "\n");
                 }
 
                 player.setPoints(player.getPoints() + (int) totalBeamScore);
-                // System.out.println("Your current score is " + player.getPoints());
                 System.out.println("Heading back to the main event...\n");
 
         }
