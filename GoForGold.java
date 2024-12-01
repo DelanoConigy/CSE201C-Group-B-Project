@@ -222,7 +222,6 @@ public class GoForGold {
 
         System.out.println("Congratulations! You have competed in all the events.");
 
-        // Need to add the medal award ceremony here
         System.out.println("Your total score is: " + p.getPoints());
 
         if (p.getPoints() <= 150 && p.getPoints() > 100) {
