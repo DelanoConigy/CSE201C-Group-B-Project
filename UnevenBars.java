@@ -87,7 +87,7 @@ public class UnevenBars extends Room {
 
     /**
      * Checks if there is any moves remaining for the user to perform.
-     * 
+     *
      * @return true if there are moves left, false otherwise
      */
     public boolean checkMoves() {
@@ -117,9 +117,9 @@ public class UnevenBars extends Room {
         this.moveCount++; // either option uses a move so can be at the top
 
         if ((this.player.getStrength() + (this.player.getConfidence() / 2)
-                + random.nextInt(this.gripStrength, 21)
+                + (random.nextInt(21 - this.gripStrength) + this.gripStrength)
                 + this.gripStrength) >= move.getDifficulty()) {
-            this.setScore((move.getDifficulty() / 7) + this.getScore());
+            this.setScore((move.getDifficulty() / 5) + this.getScore());
             this.player.setConfidence(player.getConfidence() + 1);
             System.out.println(successMsg);
             return true;
@@ -166,8 +166,8 @@ public class UnevenBars extends Room {
     }
 
     /**
-     * Checks to see how many moves left until the end of the room. Prints a message
-     * for the user.
+     * Checks to see how many moves left until the end of the room. Prints a
+     * message for the user.
      */
     private void movesLeft() {
         System.out.println("\nYou have " + (this.maxMoveCount - this.moveCount) + " moves left! You have performed "
@@ -188,7 +188,7 @@ public class UnevenBars extends Room {
         // Print header
         System.out.printf(
                 "%-" + numberColumnWidth + "s %-" + titleColumnWidth + "s %-" + descriptionColumnWidth + "s %"
-                        + difficultyColumnWidth + "s%n",
+                + difficultyColumnWidth + "s%n",
                 "Number", "Title", "Description", "Difficulty");
         System.out.println(
                 "-".repeat(numberColumnWidth + titleColumnWidth + descriptionColumnWidth + difficultyColumnWidth + 3));
@@ -198,7 +198,7 @@ public class UnevenBars extends Room {
         for (Move move : movesList) {
             System.out.printf(
                     "%-" + numberColumnWidth + "d %-" + titleColumnWidth + "s %-" + descriptionColumnWidth + "s %"
-                            + difficultyColumnWidth + "d%n",
+                    + difficultyColumnWidth + "d%n",
                     i, move.getName(), move.getDescription(), move.getDifficulty());
             i++;
         }
@@ -208,7 +208,7 @@ public class UnevenBars extends Room {
      * Attempts to perform the combo based on which input is provided.
      *
      * @param option A user integer value that provides the option for what
-     *               combo you want to enter.
+     * combo you want to enter.
      */
     private void performCombo(int option) {
         switch (option) {
@@ -228,7 +228,7 @@ public class UnevenBars extends Room {
 
     /**
      * A helper method that performs one of the move lists.
-     * 
+     *
      * @param movesList A specific combo list
      */
     private void singleCombo(ArrayList<Move> movesList) {
@@ -248,8 +248,8 @@ public class UnevenBars extends Room {
     }
 
     /**
-     * Prints the different combos (the moves, difficult, etc.) and prompts the user
-     * to enter an input.
+     * Prints the different combos (the moves, difficult, etc.) and prompts the
+     * user to enter an input.
      */
     private void printCombos() {
         System.out.println("There are three different combos, first is easy, second is medium, and third hard: ");
