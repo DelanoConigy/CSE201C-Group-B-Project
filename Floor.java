@@ -1,12 +1,15 @@
-import java.util.Scanner;
+
 import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * Class to control the floor room.
- * 
+ *
  * @author Dakota Oudeman
  */
 
 public class Floor extends Room {
+
     /**
      * The total moves left before the end of the room.
      */
@@ -16,7 +19,6 @@ public class Floor extends Room {
      * ArrayList of moves that the player can choose from to attempt.
      */
     private ArrayList<Move> skills;
-
 
     /**
      * Standard constructor method.
@@ -28,9 +30,9 @@ public class Floor extends Room {
     }
 
     /**
-     * Starts the Floor event. This will have the player play through the
-     * entire room before returning them back to the main menu.
-     * 
+     * Starts the Floor event. This will have the player play through the entire
+     * room before returning them back to the main menu.
+     *
      * @param player The player object that contains important attributes.
      */
     public void startRoom(Player player) {
@@ -40,12 +42,12 @@ public class Floor extends Room {
             Move selectedMove = selectMove();
             boolean successful = attemptMove(player, selectedMove);
             if (successful) {
-            	System.out.println("Move completed successfully!");
-            	System.out.println();
+                System.out.println("Move completed successfully!");
+                System.out.println();
             } else {
-            	System.out.println("Move failed!");
-            	System.out.println();
-            	setScore(getScore() - 2.5);
+                System.out.println("Move failed!");
+                System.out.println();
+                setScore(getScore() - 2.5);
             }
             movesLeft--;
         }
@@ -55,33 +57,33 @@ public class Floor extends Room {
 
     /**
      * Welcome message displayed upon entering the room.
-     * 
+     *
      * @param p Player object
      */
     private void displayWelcome(Player p) {
         System.out.print("Welcome to the Floor Room. You will be given 10 chances to make moves.\n"
-                        + "Based on your different attributes they will determine whether you\n"
-                        + "succesfully complete the move or fail. Successful moves will count\n"
-                        + "towards your total score.\n"
-                        + "Your Balance: " + p.getBalance() + "\n"
-                        + "Your Strength: " + p.getStrength() + "\n"
-                        + "Your Speed: " + p.getSpeed() + "\n"
-                        + "Your Confidence: " + p.getConfidence() + "\n");
+                + "Based on your different attributes they will determine whether you\n"
+                + "succesfully complete the move or fail. Successful moves will count\n"
+                + "towards your total score.\n"
+                + "Your Balance: " + p.getBalance() + "\n"
+                + "Your Strength: " + p.getStrength() + "\n"
+                + "Your Speed: " + p.getSpeed() + "\n"
+                + "Your Confidence: " + p.getConfidence() + "\n");
     }
 
     /**
      * Goodbye message displayed when leaving the room.
-     * 
+     *
      * @param p Player object
      */
     private void displayGoodbye(Player p) {
         System.out.println("The floor room is now over, goodbye.");
         System.out.println();
     }
-    
+
     /**
      * Will ask the user to select a move from a randomized set of moves
-     * 
+     *
      * @return The selected move
      */
     private Move selectMove() {
@@ -90,27 +92,27 @@ public class Floor extends Room {
         temp.add(skills.get((int) (Math.random() * skills.size())));
         temp.add(skills.get((int) (Math.random() * skills.size())));
         System.out.print("You can choose from one of three of these moves\n"
-        			   + "[1] " + temp.get(0).toString(temp.get(0)) + "\n"
-        			   + "[2] " + temp.get(1).toString(temp.get(1)) + "\n"
-        			   + "[3] " + temp.get(2).toString(temp.get(2)) + "\n");
+                + "[1] " + temp.get(0).toString(temp.get(0)) + "\n"
+                + "[2] " + temp.get(1).toString(temp.get(1)) + "\n"
+                + "[3] " + temp.get(2).toString(temp.get(2)) + "\n");
         Scanner s = new Scanner(System.in);
         int selectedNum = s.nextInt();
         while (selectedNum != 1 && selectedNum != 2 && selectedNum != 3) {
-        	System.out.println("Incorrect selection, please select either 1, 2, or 3");
-        	selectedNum = s.nextInt();
+            System.out.println("Incorrect selection, please select either 1, 2, or 3");
+            selectedNum = s.nextInt();
         }
         Move selectedMove = temp.get(selectedNum - 1);
-    	return selectedMove;
+        return selectedMove;
     }
 
     /**
      * Helper method to load the skills ArrayList with various moves.
-     * 
+     *
      * @return A loaded ArrayList of moves.
      */
     private ArrayList<Move> loadSkills() {
-    	ArrayList<Move> moves = new ArrayList<>();
-    	moves.add(new Move("Roundoff", 40, "A cartwheel with a landing on both feet, leading into a powerful rebound."));
+        ArrayList<Move> moves = new ArrayList<>();
+        moves.add(new Move("Roundoff", 40, "A cartwheel with a landing on both feet, leading into a powerful rebound."));
         moves.add(new Move("Back Handspring", 50, "A quick backward flip with the hands pushing off the ground."));
         moves.add(new Move("Front Tuck", 60, "A forward flip with knees tucked to the chest."));
         moves.add(new Move("Back Layout", 70, "A backward flip with a straight body position."));
@@ -139,13 +141,13 @@ public class Floor extends Room {
         moves.add(new Move("Whip Back", 55, "A quick backward tumbling skill, similar to a back handspring but faster."));
         moves.add(new Move("Double Layout", 95, "A double backward flip in a straight body position."));
         moves.add(new Move("Half-In Half-Out", 90, "A double flip with a half twist on the first and second rotations."));
-    	return moves;
+        return moves;
     }
 
     /**
      * Attempts a move specified by the player, based on various attributes like
      * player confidence, strength, speed, and balance.
-     * 
+     *
      * @param p Player object that has the player attributes.
      * @param m Which move the player will be trying to complete.
      * @return true if skill completed successfully, false otherwise.
@@ -153,19 +155,19 @@ public class Floor extends Room {
     private boolean attemptMove(Player p, Move m) {
         int combinedValue = p.getConfidence() * p.getStrength();
         if (combinedValue < 50) {
-        	combinedValue += p.getConfidence() * 1.5;
+            combinedValue += p.getConfidence() * 1.5;
         }
         if (combinedValue > m.getDifficulty()) {
-        	p.setConfidence(p.getConfidence() + 1);
-        	return true;
+            p.setConfidence(p.getConfidence() + 1);
+            return true;
         }
         int newValue = 100 - combinedValue;
         newValue = (newValue * (p.getConfidence() / 10)) / 3;
         combinedValue += newValue;
         if (combinedValue > m.getDifficulty()) {
-        	return true;
+            return true;
         }
         p.setConfidence(p.getConfidence() - 1);
-    	return false;
+        return false;
     }
 }

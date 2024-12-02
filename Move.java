@@ -5,7 +5,6 @@
  *
  * @author Delano Conigy, Dakota Oudeman, etc
  */
-
 public class Move {
 
     private String name;
@@ -15,8 +14,8 @@ public class Move {
     /**
      * Constructs a Move given the name, difficulty, and description.
      *
-     * @param name        of the move.
-     * @param difficulty  of the move.
+     * @param name of the move.
+     * @param difficulty of the move.
      * @param description of the move.
      */
     public Move(String name, int difficulty, String description) {

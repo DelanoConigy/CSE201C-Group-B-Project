@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 /**
@@ -7,6 +8,10 @@ import java.util.*;
  */
 public class GoForGold {
 
+    /**
+     * Our main method of the game that will basically start and end the
+     * operations of the game. Runs through each move that the user wants
+     */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println(

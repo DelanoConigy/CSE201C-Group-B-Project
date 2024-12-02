@@ -1,17 +1,20 @@
+
 import java.util.*;
 
 /**
- * This is the pommel horse room in Go For The Gold game
- * Player can perform individual or combo moves, transition between positions,
- * and participate in minigames based on move difficulty and player attributes.
- * 
- * Confidence is capped at 10, and the score is scaled to a maximum of 25 points.
- * 
+ * This is the pommel horse room in Go For The Gold game Player can perform
+ * individual or combo moves, transition between positions, and participate in
+ * minigames based on move difficulty and player attributes.
+ *
+ * Confidence is capped at 10, and the score is scaled to a maximum of 25
+ * points.
+ *
  * @author Jiahao Han
- * 
+ *
  * @version 2.0
  */
 public class PommelHorse extends Room {
+
     private Scanner scanner;
     private String position;
 
@@ -42,6 +45,7 @@ public class PommelHorse extends Room {
             "Flare", new int[]{0, 4, 0, 5},
             "Reverse Circle", new int[]{3, 4, 3, 6}
     );
+
     /**
      * Constructor for PommelHorse. Initializes the scanner for user input.
      */
@@ -51,9 +55,9 @@ public class PommelHorse extends Room {
     }
 
     /**
-     * Starts the Pommel Horse event, allowing the player to select positions and moves.
-     * The event includes minigames based on move difficulty, and scores are calculated
-     * proportionally to the player's confidence level.
+     * Starts the Pommel Horse event, allowing the player to select positions
+     * and moves. The event includes minigames based on move difficulty, and
+     * scores are calculated proportionally to the player's confidence level.
      *
      * @param player the Player object participating in the event
      */
@@ -115,15 +119,15 @@ public class PommelHorse extends Room {
     }
 
     /**
-     * Prompts the player to choose a position on the pommel horse.
-     * Options include Left, Middle, and Right.
+     * Prompts the player to choose a position on the pommel horse. Options
+     * include Left, Middle, and Right.
      */
     private void choosePosition() {
         System.out.println("Choose your position on the pommel horse(1, 2, or 3):");
         System.out.println("1. Left");
         System.out.println("2. Middle");
         System.out.println("3. Right");
-    
+
         int choice = -1;
         while (choice < 1 || choice > 3) {
             try {
@@ -136,7 +140,7 @@ public class PommelHorse extends Room {
                 System.out.println("Invalid input. Please enter a number (1, 2, or 3).");
             }
         }
-    
+
         if (choice == 1) {
             position = "left";
         } else if (choice == 2) {
@@ -144,7 +148,7 @@ public class PommelHorse extends Room {
         } else if (choice == 3) {
             position = "right";
         }
-    
+
         System.out.println("You are now at the " + position + " position.");
     }
 
@@ -169,15 +173,15 @@ public class PommelHorse extends Room {
             default:
                 return null;
         }
-    
+
         // Add Transition Move to allow free position changes
         moves.add(new Move("Transition Move", 0, "Allows you to change your position without scoring or affecting confidence."));
-    
+
         System.out.println("Available moves:");
         for (int i = 0; i < moves.size(); i++) {
             System.out.println((i + 1) + ". " + moves.get(i).getName() + " (Difficulty: " + moves.get(i).getDifficulty() + ")");
         }
-    
+
         int choice = -1;
         while (choice < 1 || choice > moves.size()) {
             try {
@@ -190,26 +194,27 @@ public class PommelHorse extends Room {
                 System.out.println("Invalid input. Please enter a number between 1 and " + moves.size() + ".");
             }
         }
-    
+
         return moves.get(choice - 1);
     }
 
     /**
      * Executes the selected move and adjusts confidence based on success.
-     * Triggers a minigame if the player does not meet the skill requirements for the move.
+     * Triggers a minigame if the player does not meet the skill requirements
+     * for the move.
      *
-     * @param move   the selected Move object
+     * @param move the selected Move object
      * @param player the Player object attempting the move
      */
     private void executeMove(Move move, Player player) {
         int confidenceChange;
         int pointsAwarded;
         int[] requirements = moveRequirements.getOrDefault(move.getName(), new int[]{0, 0, 0, 0});
-    
-        if (player.getSpeed() < requirements[0] || 
-            player.getStrength() < requirements[1] || 
-            player.getBalance() < requirements[2] || 
-            player.getConfidence() < requirements[3]) {
+
+        if (player.getSpeed() < requirements[0]
+                || player.getStrength() < requirements[1]
+                || player.getBalance() < requirements[2]
+                || player.getConfidence() < requirements[3]) {
             System.out.println("This move is challenging based on your current skills and requires a minigame.");
             boolean minigameResult = playRandomMinigame(player);
             if (minigameResult) {
@@ -226,13 +231,13 @@ public class PommelHorse extends Room {
             confidenceChange = 2;
             pointsAwarded = move.getDifficulty();
         }
-    
+
         // Ensure the total points do not exceed 25
         int currentPoints = player.getPoints();
         if (currentPoints + pointsAwarded > 25) {
             pointsAwarded = 25 - currentPoints;
         }
-    
+
         player.addConfidence(confidenceChange);
         player.setPoints(currentPoints + pointsAwarded);
         System.out.println("You earned " + pointsAwarded + " points for this move.");
@@ -255,7 +260,8 @@ public class PommelHorse extends Room {
     }
 
     /**
-     * Number-guessing minigame where the player guesses a number between 1 and 5.
+     * Number-guessing minigame where the player guesses a number between 1 and
+     * 5.
      *
      * @return true if the player guesses correctly, false otherwise
      */
@@ -279,7 +285,8 @@ public class PommelHorse extends Room {
     }
 
     /**
-     * Reaction time minigame where the player must type "GO!" after a randomized delay.
+     * Reaction time minigame where the player must type "GO!" after a
+     * randomized delay.
      *
      * @param player the Player object participating in the minigame
      * @return true if the player reacts quickly enough, false otherwise
@@ -301,22 +308,22 @@ public class PommelHorse extends Room {
     /**
      * Perform combo move with a predefined sequence of high-difficulty moves.
      * Adjusts confidence based on the success or failure of minigame.
-     * 
+     *
      * @param player the Player object performing the combo move
      */
     private boolean performComboMove(Player player) {
         List<String> combos = Arrays.asList(
-            "1. The Busnari, The Magyar, and The Tong Fei",
-            "2. The Wu, The Li Ning, and The Triple Russian",
-            "3. The Flair, The Reverse Circle, and The Russian Swing"
+                "1. The Busnari, The Magyar, and The Tong Fei",
+                "2. The Wu, The Li Ning, and The Triple Russian",
+                "3. The Flair, The Reverse Circle, and The Russian Swing"
         );
-    
+
         System.out.println("Available combo moves:");
         for (String combo : combos) {
             System.out.println(combo);
         }
         System.out.println((combos.size() + 1) + ". Go Back");
-    
+
         int comboChoice = -1;
         while (comboChoice < 1 || comboChoice > combos.size() + 1) {
             try {
@@ -329,15 +336,15 @@ public class PommelHorse extends Room {
                 System.out.println("Invalid input. Please enter a number between 1 and " + (combos.size() + 1) + ".");
             }
         }
-    
+
         if (comboChoice == combos.size() + 1) {
             System.out.println("Returning to main menu...");
             return false;
         }
-    
+
         System.out.println("You chose combo " + comboChoice + ": " + combos.get(comboChoice - 1));
         boolean minigameResult = playRandomMinigame(player);
-    
+
         if (minigameResult) {
             System.out.println("Combo success! You've completed the Pommel Horse event!");
             player.setPoints(player.getPoints() + 25);

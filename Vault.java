@@ -3,12 +3,13 @@
 earning points based on their performance. The class handles event instrucations, scoring, and logic
 for flip success or failure using a dice role. 
 * @Author Adash Bhattarai
-*/
+ */
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class Vault extends Room {
+
     private Player player;
     private String roomDescription;
     private String instructions;
@@ -20,15 +21,15 @@ public class Vault extends Room {
 
     // Array of possible flips for the event
     private String[] flips = {"Easy Flip", "Medium Flip", "Hard Flip"};
+
     /**
-     * Constructor for the Vault class.
-     * Initializes the room with a description, instructions for the player,
-     * and settings for the number of flips, maximum points, and random number generation.
-     * Key Features:
-     * Room Description: Provides an overview of the Vault event.
-     * Instructions: Explains how to perform flips and the required dice rolls.
-     * Game Settings: Limits the number of flips and initializes total points to 0.
-     * Random Dice Rolls: Generates random values to determine success for flips.
+     * Constructor for the Vault class. Initializes the room with a description,
+     * instructions for the player, and settings for the number of flips,
+     * maximum points, and random number generation. Key Features: Room
+     * Description: Provides an overview of the Vault event. Instructions:
+     * Explains how to perform flips and the required dice rolls. Game Settings:
+     * Limits the number of flips and initializes total points to 0. Random Dice
+     * Rolls: Generates random values to determine success for flips.
      */
     public Vault() {
         super(); // Inherited constructor to initialize the score for the room
@@ -43,6 +44,7 @@ public class Vault extends Room {
 
     /**
      * the dice roll for the flip.
+     *
      * @return A random number between 1 and 6
      */
     private int rollDice() {
@@ -51,6 +53,7 @@ public class Vault extends Room {
 
     /**
      * Perform a flip based on user selection and update points.
+     *
      * @param flipChoice The type of flip chosen (1, 2, or 3)
      */
     private void performFlip(int flipChoice) {
@@ -65,7 +68,7 @@ public class Vault extends Room {
                 break;
             case 2:
                 requiredRoll = 6;
-                pointsEarned =8;
+                pointsEarned = 8;
                 System.out.println("You chose the Medium Flip.");
                 break;
             case 3:
@@ -93,9 +96,9 @@ public class Vault extends Room {
             System.out.println("Unfortunately, you didn't land the flip. You earned " + halfPoints + " points instead.");
             this.totalPoints += halfPoints;
         }
-        
-        if(this.totalPoints > 25 ) {
-        	this.totalPoints = 25;
+
+        if (this.totalPoints > 25) {
+            this.totalPoints = 25;
         }
 
         System.out.println("Your total points are now: " + this.totalPoints);
@@ -103,6 +106,7 @@ public class Vault extends Room {
 
     /**
      * Prints the instructions and handles user input for performing flips.
+     *
      * @param scan Scanner object to take player input
      */
     private void playGame(Scanner scan) {
@@ -132,13 +136,13 @@ public class Vault extends Room {
 
     /**
      * This is the main method for the Vault event, which runs the event.
+     *
      * @param player The player who is participating in the Vault event
      */
     @Override
     public void startRoom(Player player) {
         this.player = player;
 
-    
         Scanner scan = new Scanner(System.in);
 
         // Game loop to handle player actions

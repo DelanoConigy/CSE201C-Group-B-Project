@@ -5,7 +5,6 @@
  *
  * @author Delano Conigy, Dakota Oudeman, etc
  */
-
 public abstract class Room {
 
     /**

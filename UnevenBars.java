@@ -5,7 +5,7 @@ import java.util.*;
  * Class to control the Uneven Bars event
  *
  * @version 2.0 (Final)
- * 
+ *
  * @author Delano Conigy
  */
 public class UnevenBars extends Room {

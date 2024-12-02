@@ -12,11 +12,11 @@ public class Player {
     /**
      * Constructs a Player given gender and skill levels.
      *
-     * @param gender     of player.
+     * @param gender of player.
      * @param confidence level.
-     * @param strength   level.
-     * @param speed      level.
-     * @param balance    level.
+     * @param strength level.
+     * @param speed level.
+     * @param balance level.
      */
     public Player(String gender, int confidence, int strength, int speed, int balance) {
         this.gender = gender;
@@ -105,7 +105,8 @@ public class Player {
     }
 
     /**
-     * Sets the confidence of the player. Confidence cannot go over 10 or under 0.
+     * Sets the confidence of the player. Confidence cannot go over 10 or under
+     * 0.
      *
      * @param Confidence of player.
      */
