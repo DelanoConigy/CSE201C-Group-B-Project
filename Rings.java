@@ -171,7 +171,7 @@ public class Rings extends Room {
 
         // Convert Rings score to the overall score (max 25 points)
         int convertedScore = Math.min(25, totalRingScore / 15); // Adjust conversion formula if needed
-        player.setPoints(convertedScore); // Update player's overall score
+        player.setPoints(player.getPoints() + convertedScore); // Update player's overall score
 
         System.out.println("\nRings event is over! Your total converted score is: " + convertedScore);
         System.out.println();
